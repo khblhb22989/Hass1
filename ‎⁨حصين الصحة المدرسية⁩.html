@@ -1,0 +1,1530 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>حصين الصحة المدرسية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Readex+Pro:wght@500;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+/* Layout: phone-first app shell. Cool clinical neutrals, one teal brand, and a single bold object (the passport card). Semantic colors (ok / warn / crit) carry all alert state. */
+:root{
+  --bg:#EDF3F2; --surface:#FFFFFF; --ink:#0D2B2C; --muted:#566F6E; --line:#D3E0DE;
+  --brand:#0A6B6C; --on-brand:#FFFFFF; --brand-soft:#DCEFED;
+  --ok:#1B7A4B; --ok-soft:#DCF2E5; --warn:#8F5500; --warn-soft:#FCEDCC; --crit:#B0261F; --crit-soft:#FADFDC;
+  --pass-bg:#083F42; --pass-ink:#EAF6F4; --pass-mute:#9CC7C3; --qr-bg:#FFFFFF; --qr-fg:#0A1F20;
+  --shadow:rgba(13,43,44,.14);
+  --f-head:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0B1818; --surface:#12292A; --ink:#E6F2F0; --muted:#93AFAC; --line:#244342;
+    --brand:#4CC2BC; --on-brand:#05201F; --brand-soft:#173B3A;
+    --ok:#5FD39A; --ok-soft:#133526; --warn:#F0B84F; --warn-soft:#3A2E10; --crit:#FF8C82; --crit-soft:#411C19;
+    --pass-bg:#0E5558; --shadow:rgba(0,0,0,.5); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0B1818; --surface:#12292A; --ink:#E6F2F0; --muted:#93AFAC; --line:#244342;
+  --brand:#4CC2BC; --on-brand:#05201F; --brand-soft:#173B3A;
+  --ok:#5FD39A; --ok-soft:#133526; --warn:#F0B84F; --warn-soft:#3A2E10; --crit:#FF8C82; --crit-soft:#411C19;
+  --pass-bg:#0E5558; --shadow:rgba(0,0,0,.5); color-scheme:dark;
+}
+:root[lang="en"] body{line-height:1.55}
+[hidden]{display:none!important}
+.ro-row{display:flex;gap:10px;align-items:center;justify-content:space-between;width:100%;text-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;min-height:64px;cursor:pointer}
+.ro-row .main{min-width:0;flex:1}
+.ro-row .t{font-weight:500}
+.ro-row .d{color:var(--muted);font-size:13px}
+.ro-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.chev{flex:none;color:var(--muted)}
+:root[dir="ltr"] .chev{transform:scaleX(-1)}
+.msg-note{margin:0;font-size:14px}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;min-height:40px;cursor:pointer;font-weight:500}
+.chip[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.stack{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+.card h3,.sec{font-family:var(--f-head);font-size:16.5px;font-weight:500;margin:0 0 6px;text-wrap:balance}
+.lead{color:var(--muted);font-size:13.5px;margin:0}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:1px 10px;border-radius:999px;font-size:12.5px;font-weight:500;background:var(--brand-soft);color:var(--brand);white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.crit{background:var(--crit-soft);color:var(--crit)}
+.pill.mute{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--brand-soft);border-radius:12px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;color:var(--muted);padding:6px;border-radius:9px;font-weight:500;cursor:pointer;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px var(--shadow)}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:500;padding:10px 16px;border-radius:12px;min-height:46px;cursor:pointer}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.btn.small{min-height:38px;padding:6px 12px;font-size:13.5px}
+.btn[disabled]{opacity:.55;cursor:default}
+.btn.block{width:100%}
+.notice{font-size:12.5px;color:var(--muted);background:var(--brand-soft);border-radius:10px;padding:6px 12px}
+/* passport */
+.passport{background:var(--pass-bg);color:var(--pass-ink);border-radius:20px;padding:18px;display:grid;gap:14px}
+.pp-top{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--pass-mute);letter-spacing:.02em}
+.pp-top b{font-family:var(--f-head);font-weight:500;color:var(--pass-ink);font-size:13px}
+.pp-body{display:flex;gap:14px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.pp-info{flex:1 1 150px;min-width:0}
+.pp-name{font-family:var(--f-head);font-weight:700;font-size:21px;line-height:1.3}
+.pp-meta{color:var(--pass-mute);font-size:13px}
+.pp-note{margin-top:10px;font-size:12.5px;color:var(--pass-mute)}
+.qr{background:var(--qr-bg);border-radius:12px;padding:10px;width:148px;height:148px;flex:none}
+.qr svg{width:100%;height:100%;display:block}
+.qr-fallback{color:var(--qr-fg);display:grid;place-items:center;height:100%;font-weight:700}
+.list{display:grid;gap:8px;margin:8px 0 0;padding:0;list-style:none}
+.list li{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.list .main{min-width:0}
+.list .t{font-weight:500}
+.list .d{color:var(--muted);font-size:13px}
+.steps{margin:8px 0 0;padding:0;list-style:none;counter-reset:s;display:grid;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(s,arabic-indic);width:30px;height:30px;border-radius:50%;background:var(--crit);color:var(--surface);display:grid;place-items:center;font-weight:600;font-size:14px}
+.resp-head{background:var(--crit);color:var(--surface);border-radius:var(--r);padding:14px 16px}
+.resp-head .k{font-size:12.5px;opacity:.9}
+.resp-head .v{font-family:var(--f-head);font-weight:700;font-size:20px;line-height:1.35}
+/* forms */
+.yn{display:inline-grid;grid-auto-flow:column;gap:4px;flex:none}
+.yn button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:4px 14px;min-height:40px;min-width:64px;cursor:pointer;font-weight:500}
+.yn button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+.q{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-block:10px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q .main{min-width:0}
+.prog{height:8px;border-radius:99px;background:var(--brand-soft);overflow:hidden}
+.prog>i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.prog.ok>i{background:var(--ok)}
+label.f{display:grid;gap:4px;font-size:13px;color:var(--muted);flex:1 1 130px;min-width:0}
+select,input[type=number],input[type=search],textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px;min-height:44px}
+textarea{min-height:76px;resize:vertical}
+.bars{display:grid;gap:10px;margin-top:8px}
+.bar{display:grid;gap:4px}
+.bar .lbl{display:flex;justify-content:space-between;gap:8px;font-size:13.5px}
+.track{position:relative;height:12px;border-radius:99px;background:var(--brand-soft)}
+.track>i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:99px;background:var(--brand)}
+.track>i.hot{background:var(--crit)}
+.track>b{position:absolute;inset-block:-3px;width:2px;background:var(--ink);opacity:.6}
+.alert{background:var(--crit-soft);color:var(--ink);border:1px solid var(--crit);border-radius:var(--r);padding:14px;display:grid;gap:8px}
+.alert .h{color:var(--crit);font-family:var(--f-head);font-weight:500}
+.calm{background:var(--ok-soft);border-radius:var(--r);padding:12px 14px;color:var(--ok);font-weight:500}
+.stepper{display:inline-flex;align-items:center;gap:8px}
+.stepper button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:18px}
+.stepper output{min-width:28px;text-align:center;font-weight:600}
+.tag{font-size:12px;padding:0 8px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
+.tag.hit{border-color:var(--crit);color:var(--crit);background:var(--crit-soft)}
+.prod{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
+.prod:first-child{border-top:0}
+.prod.flash{background:var(--crit-soft);margin-inline:-16px;padding-inline:16px;border-radius:10px}
+.prod .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:2px}
+.log{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:13.5px}
+.log li{border-inline-start:3px solid var(--line);padding-inline-start:10px}
+.log li.crit{border-color:var(--crit)}
+.chk{display:flex;gap:10px;align-items:center;padding-block:8px;min-height:44px}
+.chk input{width:22px;height:22px;accent-color:var(--brand)}
+.chart{width:100%;height:auto;display:block;direction:ltr}
+.chart text{font-family:var(--f-body);font-size:10px;fill:var(--muted)}
+.chart .gb-ok{fill:var(--ok-soft)}.chart .gb-w{fill:var(--warn-soft)}.chart .gb-c{fill:var(--crit-soft)}
+.chart .gl{fill:none;stroke:var(--muted);stroke-width:.7;opacity:.65}.chart .gl-m{stroke-width:1.7;opacity:1}
+.chart .gl-w{stroke:var(--warn);stroke-dasharray:3 2;opacity:1;stroke-width:1}.chart .gl-c{stroke:var(--crit);stroke-dasharray:3 2;opacity:1;stroke-width:1}
+.gv{display:grid;justify-items:end;gap:4px;text-align:end}
+.mono{font-variant-numeric:tabular-nums}
+.tl{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.tl li{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13.5px}
+.tl li::before{content:"";width:12px;height:12px;border-radius:50%;border:2px solid var(--line);flex:none}
+.tl li.on{color:var(--ink)}
+.tl li.on::before{background:var(--ok);border-color:var(--ok)}
+.tag.sw{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+.prog.crit>i{background:var(--crit)}
+/* nav + overlays */
+
+/* ===== v2: responsive app shell ===== */
+:root{--bar-h:60px;--rail-w:272px;--sh1:0 1px 1px rgba(13,43,44,.04),0 10px 22px -16px var(--shadow)}
+html{-webkit-text-size-adjust:100%}
+body{font-size:15px;-webkit-font-smoothing:antialiased}
+.app{min-height:100dvh}
+.rail{position:sticky;top:0;z-index:30;height:var(--bar-h);display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--surface);border-bottom:1px solid var(--line);padding-inline:max(14px,env(safe-area-inset-left,0px)) max(14px,env(safe-area-inset-right,0px))}
+.brand{display:flex;align-items:center;gap:8px;min-width:0}
+.logo{background:#fff;border-radius:10px;padding:2px 6px;line-height:0;box-shadow:0 0 0 1px var(--line);flex:none}
+.logo img{height:38px;width:auto;display:block}
+.sub{color:var(--muted);font-size:10.5px;line-height:1.35;max-width:84px}
+.tools{display:flex;align-items:center;gap:6px}
+.tool-row{display:flex;gap:6px}
+.lang{display:inline-grid;grid-auto-flow:column;gap:2px;background:var(--brand-soft);border-radius:10px;padding:2px}
+.lang button{border:0;background:transparent;color:var(--muted);min-height:34px;padding:0 9px;border-radius:8px;font-weight:500;font-size:12.5px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px var(--shadow)}
+.tool{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--brand);cursor:pointer;text-decoration:none;font-weight:600}
+.tool svg.i{width:20px;height:20px}
+.tool.call{color:var(--crit);background:var(--crit-soft);border-color:transparent}
+.tool.call .lbl,.tool.call b{display:none}
+.tool.theme{display:none}
+/* bottom nav (phones and tablets) */
+.nav{position:fixed;inset:auto 0 0 0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding:6px max(8px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(8px,env(safe-area-inset-left,0px))}
+.nav-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+.nav button{border:0;background:transparent;display:grid;justify-items:center;align-content:start;gap:3px;padding:4px 0 2px;color:var(--muted);font-size:11px;font-weight:500;white-space:nowrap;min-width:0;cursor:pointer;border-radius:12px;min-height:54px}
+.nav button svg{width:52px;max-width:100%;height:30px;padding:3px 14px;border-radius:15px}
+.nav button[aria-current="page"]{color:var(--brand);font-weight:600}
+.nav button[aria-current="page"] svg{background:var(--brand-soft)}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* content column */
+.col{min-width:0;width:100%;max-width:720px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+.pagehead{position:sticky;top:var(--bar-h);z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:10px;margin-inline:-16px;padding:10px 16px}
+.pagehead h1{font-family:var(--f-head);font-size:19px;font-weight:700;margin:0;white-space:nowrap}
+.chips{margin:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;min-width:0}
+.chips::-webkit-scrollbar{display:none}
+.chip{min-height:36px;padding:3px 13px;display:inline-flex;align-items:center;gap:7px;font-size:14px;white-space:nowrap;transition:background-color .15s,border-color .15s}
+.chip .dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+.chip .dot.crit{background:var(--crit)}.chip .dot.warn{background:var(--warn)}
+.chip[aria-pressed="true"] .dot{box-shadow:0 0 0 1.5px var(--on-brand)}
+/* surfaces */
+.card{border-radius:14px;box-shadow:var(--sh1);padding:18px}
+.card h3,.sec{font-size:16px;font-weight:600}
+.lead{line-height:1.6}
+.notice{padding:8px 12px;line-height:1.55}
+.pill{padding:2px 10px;line-height:1.5}
+.btn{transition:background-color .15s,border-color .15s,transform .1s}
+.btn:active:not([disabled]){transform:translateY(1px)}
+.btn.primary{box-shadow:0 1px 2px rgba(10,107,108,.3)}
+.ro-row{box-shadow:var(--sh1)}
+select,input[type=number],input[type=search],textarea{transition:border-color .15s,box-shadow .15s}
+select:focus,input:focus,textarea:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.seg{box-shadow:inset 0 0 0 1px var(--line)}
+.q,.prod{align-items:center}
+/* passport: the one bold object */
+.passport{position:relative;overflow:hidden;border-radius:22px;padding:18px;background-image:repeating-radial-gradient(circle at 100% 0,rgba(255,255,255,.05) 0 1px,transparent 1px 15px);box-shadow:0 18px 30px -22px var(--pass-bg)}
+.pp-top{padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.16)}
+.pp-name{font-size:23px}
+.qr{width:148px;height:148px;border-radius:14px;box-shadow:0 0 0 6px rgba(255,255,255,.1)}
+.resp-head{border-radius:16px;padding:16px 18px;box-shadow:0 14px 26px -20px var(--crit)}
+.resp-head .v{font-size:21px}
+.calm{display:flex;align-items:center;gap:8px}
+/* overlays */
+.toast{position:fixed;inset-inline:0;bottom:calc(84px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;pointer-events:none;z-index:40;padding-inline:16px}
+.toast span{background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:12px;font-size:14px;line-height:1.5;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s;max-width:460px;box-shadow:0 12px 28px -12px rgba(0,0,0,.5)}
+.toast.on span{opacity:1;transform:none}
+.sheet{position:fixed;inset:0;z-index:50;display:grid;align-items:end}
+.sheet-bg{position:absolute;inset:0;background:rgba(5,20,20,.55)}
+.sheet-panel{position:relative;max-width:520px;width:100%;margin:0 auto;max-height:88%;overflow:auto;background:var(--surface);border-radius:20px 20px 0 0;padding:20px max(18px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.sheet-panel h2{font-family:var(--f-head);font-size:19px;margin:0 0 10px}
+@media (hover:hover){
+  .chip:hover:not([aria-pressed="true"]),.btn:hover:not(.primary):not([disabled]),.tool:hover,.ro-row:hover{background:var(--brand-soft)}
+  .btn.primary:hover:not([disabled]){filter:brightness(1.08)}
+  .nav button:hover:not([aria-current="page"]){color:var(--ink)}
+}
+/* desktop: side rail + wider canvas */
+@media (min-width:900px){
+  :root{--bar-h:0px}
+  .app{display:grid;grid-template-columns:var(--rail-w) minmax(0,1fr)}
+  .rail{height:100dvh;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:22px;padding:24px 16px 20px;border-bottom:0;border-inline-end:1px solid var(--line)}
+  .brand{flex-direction:column;align-items:flex-start;gap:10px;padding-inline:4px}
+  .logo img{height:54px}
+  .sub{max-width:none;font-size:12.5px}
+  .nav{position:static;background:transparent;border:0;padding:0;flex:1;overflow:auto;min-height:0}
+  .nav-in{grid-template-columns:1fr;gap:2px;max-width:none}
+  .nav button{grid-auto-flow:column;justify-content:start;justify-items:start;align-content:center;align-items:center;gap:12px;font-size:15px;min-height:46px;padding:0 12px;border-radius:10px;white-space:nowrap}
+  .nav button svg,.nav button[aria-current="page"] svg{width:22px;height:22px;padding:0;border-radius:0;background:transparent}
+  .nav button[aria-current="page"]{background:var(--brand-soft)}
+  .tools{flex-direction:column;align-items:stretch;gap:8px}
+  .lang{display:grid;grid-template-columns:1fr 1fr}
+  .tool{width:auto;flex:1}
+  .tool.call{display:flex;gap:8px;align-items:center;justify-content:center;height:44px}
+  .tool.call .lbl,.tool.call b{display:inline}
+  .tool.theme{display:grid}
+  .col{max-width:1180px;padding:0 36px 56px}
+  .pagehead{top:0;margin-inline:-36px;padding:28px 36px 16px}
+  .pagehead h1{font-size:26px}
+  .chip{min-height:40px;font-size:14.5px}
+  .toast{bottom:28px}
+  .sheet{align-items:center}
+  .sheet-panel{border-radius:20px;padding:24px}
+}
+@media (min-width:1100px){
+  #view>.stack{display:block;columns:2;column-gap:18px}
+  #view>.stack>*{break-inside:avoid;margin-bottom:16px}
+  #view>.stack>:is(.seg,.resp-head,.calm,.notice,.alert,#ro-list,.card:has(#ro-q)){column-span:all}
+  #ro-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  #ro-list>:is(.row,p){grid-column:1/-1}
+  .qr{width:164px;height:164px}
+  .pp-name{font-size:25px}
+}
+@media (max-width:380px){.sub{display:none}.lang button{padding:0 7px}}
+@media print{.rail,.chips,.toast,.sheet{display:none!important}.app{display:block}.col{max-width:none;padding:0}.pagehead{position:static}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app">
+ <aside class="rail">
+  <div class="brand"><div class="logo" role="img" aria-label="حصين، الصحة المدرسية"><img alt="" src="data:image/jpeg;base64,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"></div><div class="sub">نموذج تجريبي ببيانات وهمية</div></div>
+  <nav class="nav" aria-label="أقسام التطبيق"><div class="nav-in" id="nav"></div></nav>
+  <div class="tools">
+   <div class="lang" role="group" data-keep aria-label="اللغة · Language">
+    <button data-act="lang" data-v="ar" data-lang="ar" data-keep aria-pressed="true">العربية</button>
+    <button data-act="lang" data-v="en" data-lang="en" data-keep aria-pressed="false">English</button>
+   </div>
+   <a class="tool call" href="tel:997" aria-label="الإسعاف"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span class="lbl">الإسعاف</span><b class="mono">٩٩٧</b></a>
+   <div class="tool-row">
+    <button class="tool theme" data-act="theme" aria-label="تبديل المظهر"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/></svg></button>
+    <button class="tool" data-act="privacy" aria-label="الخصوصية وأمن البيانات"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></button>
+   </div>
+  </div>
+ </aside>
+ <div class="col">
+  <header class="pagehead"><h1 id="ptitle"></h1><div class="chips" id="chips" role="group" aria-label="اختيار الطالب"></div></header>
+  <main id="view"></main>
+ </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"><span></span></div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-bg" data-act="close"></div>
+  <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sh-t">
+    <h2 id="sh-t">كيف نحمي بيانات الطفل</h2>
+    <ul class="list" style="gap:12px">
+      <li><div class="main"><div class="t">الرمز لا يحمل بيانات صحية</div><div class="d">رمز QR مفتاح مؤقت يتجدد، ولا يكشف شيئاً إلا لحساب مصرّح له.</div></div></li>
+      <li><div class="main"><div class="t">صلاحيات بحسب الدور</div><div class="d">المرشد يرى بروتوكول الطوارئ فقط، والمقصف يرى الحساسيات الغذائية فقط، والمركز الصحي يرى أعداداً مجمّعة.</div></div></li>
+      <li><div class="main"><div class="t">سجل اطلاع لولي الأمر</div><div class="d">كل فتح لملف الطفل يُسجَّل باسم الجهة والوقت والسبب.</div></div></li>
+      <li><div class="main"><div class="t">تنبيهات التفشي بلا أسماء</div><div class="d">يصل المركز الصحي عدد الحالات والصف والأعراض دون أسماء الطلاب.</div></div></li>
+      <li><div class="main"><div class="t">موافقة صريحة ويمكن سحبها</div><div class="d">لا يُجرى فحص ولا تُشارك بيانات دون موافقة ولي الأمر.</div></div></li>
+      <li><div class="main"><div class="t">جاهز للتكامل مستقبلاً</div><div class="d">يُبنى على معايير تبادل بيانات صحية قياسية (مثل HL7 FHIR) ليغذّي المنظومات الصحية الوطنية بعد اعتماد الجهات المختصة، وبما يتوافق مع نظام حماية البيانات الشخصية.</div></div></li>
+    </ul>
+    <p class="notice" style="margin:14px 0">هذا النموذج للتجربة فقط. لا يحفظ أي بيانات ولا يتصل بخادم، وكل الأسماء والأرقام أمثلة.</p>
+    <button class="btn block" data-act="close">إغلاق</button>
+  </div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+try{const th=localStorage.getItem('hisn-theme');if(th)document.documentElement.dataset.theme=th}catch(e){}
+const n=x=>String(x).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const money=v=>n(v.toFixed(2)).replace('.','٫');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const now=()=>{const d=new Date();return n(String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'))};
+
+/* ---------- sample data ---------- */
+const ST={
+ sara:{first:'سارة',name:'سارة العبدالله',cls:'٥/ب',id:'203144',phone:'٠٥٥٠٠٠٠٠٠٠ (مثال)',
+  conds:[{t:'حساسية مفرطة (فول سوداني)',c:'crit'},{t:'ربو',c:'warn'}],
+  steps:['استخدم حقنة الإبيبن فوراً في الجانب الخارجي من الفخذ عند ظهور أعراض شديدة (صعوبة تنفس، تورم الوجه أو الشفتين، دوخة).','اتصل بالإسعاف على 997 حتى لو تحسنت الأعراض بعد الحقنة.','اجعلها مستلقية مع رفع الساقين، أو جالسة إن كان التنفس صعباً. لا تتركها وحدها.','سجّل وقت الحقنة وأبلغ ولي الأمر.','في نوبة ربو دون أعراض حساسية: بخاخ الإسعاف كما في خطة الطبيب.'],
+  meds:[{n:'حقنة الإبيبن',w:'الجيب الأمامي لحقيبتها، ونسخة ثانية في عيادة المدرسة',exp:38},{n:'بخاخ الربو (إسعاف)',w:'الجيب الجانبي للحقيبة',exp:210}]},
+ yusuf:{first:'يوسف',name:'يوسف الحربي',cls:'٥/ب',id:'203187',phone:'٠٥٥٠٠٠٠٠٠١ (مثال)',
+  conds:[{t:'سكري النوع الأول',c:'crit'},{t:'حساسية الحليب',c:'warn'}],
+  steps:['عند أعراض هبوط السكر (رجفة، تعرق، شحوب، تشوش): قِس السكر فوراً.','إن كان تحت الحد المحدد في الخطة، أعطه مصدر سكر سريع كما كتبه الطبيب ثم أعد القياس.','إذا فقد الوعي أو تعذّر عليه البلع: لا تعطه شيئاً بالفم واتصل بالإسعاف على 997.','أبلغ ولي الأمر وسجّل القراءة والإجراء.'],
+  meds:[{n:'الأنسولين',w:'ثلاجة عيادة المدرسة، والجرعة وفق جدول الطبيب',exp:120},{n:'جهاز قياس السكر',w:'حقيبته الصغيرة الزرقاء',exp:400},{n:'شرائط الفحص',w:'حقيبته الصغيرة الزرقاء',exp:25,sup:true},{n:'إبر الأنسولين',w:'حقيبته الصغيرة الزرقاء، وعلبة احتياطية في عيادة المدرسة',exp:180,sup:true}]}
+,
+ omar:{first:'عمر',name:'عمر الشهراني',cls:'٤/ب',id:'203281',phone:'٠٥٥٠٠٠٠٠٢٦ (مثال)',
+  conds:[{t:'حساسية مفرطة (فول سوداني)',c:'crit'}],
+  steps:['استخدم حقنة الإبيبن فوراً في الجانب الخارجي من الفخذ عند ظهور أعراض شديدة (صعوبة تنفس، تورم الوجه أو الشفتين، دوخة).','اتصل بالإسعاف على 997 حتى لو تحسنت الأعراض بعد الحقنة.','أجلس الطالب أو أضجعه مع رفع الساقين، ولا تتركه وحده.','سجّل وقت الحقنة وأبلغ ولي الأمر.'],
+  meds:[{n:'حقنة الإبيبن',w:'الجيب الأمامي لحقيبته، ونسخة ثانية في عيادة المدرسة',exp:75},{n:'مضاد الهيستامين',w:'عيادة المدرسة',exp:240}]}
+};
+/* قوالب البروتوكولات وقائمة الطلاب والمرضى */
+const SCH={am:'مدرسة الأمل',nr:'مدرسة النور',fj:'مدرسة الفجر',rw:'مدرسة الرواد',mn:'مدرسة المنار'};
+const TPL={
+ anaph:{steps:['استخدم حقنة الإبيبن فوراً في الجانب الخارجي من الفخذ عند ظهور أعراض شديدة (صعوبة تنفس، تورم الوجه أو الشفتين، دوخة).','اتصل بالإسعاف على 997 حتى لو تحسنت الأعراض بعد الحقنة.','أجلس الطالب أو أضجعه مع رفع الساقين، ولا تتركه وحده.','سجّل وقت الحقنة وأبلغ ولي الأمر.'],meds:[{n:'حقنة الإبيبن',w:'عيادة المدرسة'}]},
+ asth:{steps:['عند ضيق النفس أو الصفير أو السعال المستمر: أعطِ بخاخ الإسعاف كما كتبه الطبيب وأجلس الطالب بوضع مريح.','أعد التقييم بعد ١٥ دقيقة، وإن لم تتحسن الأعراض أو ازداد الضيق اتصل بالإسعاف على 997.','أبلغ ولي الأمر وسجّل النوبة.'],meds:[{n:'بخاخ الربو (إسعاف)',w:'عيادة المدرسة'}]},
+ dia:{steps:['عند أعراض هبوط السكر (رجفة، تعرق، شحوب، تشوش): قِس السكر فوراً.','إن كان تحت الحد المحدد في الخطة، أعطه مصدر سكر سريع كما كتبه الطبيب ثم أعد القياس.','إذا فقد الوعي أو تعذّر عليه البلع: لا تعطه شيئاً بالفم واتصل بالإسعاف على 997.','أبلغ ولي الأمر وسجّل القراءة والإجراء.'],meds:[{n:'الأنسولين',w:'عيادة المدرسة'},{n:'جهاز قياس السكر',w:'عيادة المدرسة'}]},
+ epi:{steps:['أبعد الأشياء الخطرة عن الطالب وضعه على جنبه، ولا تضع شيئاً في فمه.','سجّل وقت بدء النوبة ومدتها.','اتصل بالإسعاف على 997 إذا استمرت النوبة أكثر من ٥ دقائق أو تكررت أو تعذّر التنفس.','أبلغ ولي الأمر بعد انتهاء النوبة.'],meds:[{n:'دواء الطوارئ للصرع (حسب وصفة الطبيب)',w:'عيادة المدرسة'}]},
+ none:{steps:[],meds:[]}};
+const mkS=(id,name,cls,sch,tpl,conds,ph)=>({id,name,cls,sch,phone:ph,conds,steps:TPL[tpl].steps,meds:TPL[tpl].meds});
+const AN=c=>[{t:c,c:'crit'}];
+const ROSTER=[
+ Object.assign({key:'sara',sch:'am'},ST.sara),
+ Object.assign({key:'yusuf',sch:'am'},ST.yusuf),
+ mkS('203201','ريان الدوسري','٤/ب','am','asth',[{t:'ربو',c:'warn'}],'٠٥٥٠٠٠٠٠١٢ (مثال)'),
+ mkS('203215','لجين القحطاني','٣/أ','am','anaph',AN('حساسية مفرطة (مكسرات)'),'٠٥٥٠٠٠٠٠١٣ (مثال)'),
+ mkS('203228','فهد العتيبي','٦/أ','am','epi',AN('صرع'),'٠٥٥٠٠٠٠٠١٤ (مثال)'),
+ mkS('203233','مها الشمري','٣/أ','am','dia',AN('سكري النوع الأول'),'٠٥٥٠٠٠٠٠١٥ (مثال)'),
+ mkS('203246','عبدالعزيز الغامدي','٤/ب','am','asth',[{t:'ربو',c:'warn'}],'٠٥٥٠٠٠٠٠١٦ (مثال)'),
+ mkS('203259','جود الشهري','٥/ب','am','anaph',AN('حساسية مفرطة (بيض)'),'٠٥٥٠٠٠٠٠١٧ (مثال)'),
+ mkS('203262','ريم الزهراني','٦/أ','am','none',[],'٠٥٥٠٠٠٠٠١٨ (مثال)'),
+ Object.assign(mkS('203281','عمر الشهراني','٤/ب','am','anaph',[{t:'حساسية مفرطة (فول سوداني)',c:'crit'}],'٠٥٥٠٠٠٠٠٢٦ (مثال)'),{meds:[{n:'حقنة الإبيبن',w:'الجيب الأمامي لحقيبته، ونسخة ثانية في عيادة المدرسة',exp:75},{n:'مضاد الهيستامين',w:'عيادة المدرسة',exp:240}]}),
+ mkS('203270','ناصر المطيري','٥/ب','am','none',[],'٠٥٥٠٠٠٠٠١٩ (مثال)'),
+ mkS('305118','خالد السبيعي','٤/ب','nr','dia',AN('سكري النوع الأول'),'٠٥٥٠٠٠٠٠٢٠ (مثال)'),
+ mkS('305124','هيا الحربي','٣/أ','nr','asth',[{t:'ربو',c:'warn'}],'٠٥٥٠٠٠٠٠٢١ (مثال)'),
+ mkS('412077','سلمان القرني','٥/ب','fj','epi',AN('صرع'),'٠٥٥٠٠٠٠٠٢٢ (مثال)'),
+ mkS('412091','تالا العمري','٦/أ','fj','anaph',AN('حساسية مفرطة (بيض)'),'٠٥٥٠٠٠٠٠٢٣ (مثال)'),
+ mkS('518340','أنس الدوسري','٤/ب','rw','dia',AN('سكري النوع الأول'),'٠٥٥٠٠٠٠٠٢٤ (مثال)'),
+ mkS('627105','غدير الجهني','٥/ب','mn','asth',[{t:'ربو',c:'warn'}],'٠٥٥٠٠٠٠٠٢٥ (مثال)')];
+const PSEG=[['par','ولي الأمر'],['nur','المرشد الصحي'],['doc','الطبيب']];
+const SURV=[{k:'q1',v:true,issue:'صعوبة قراءة السبورة'},{k:'q3',v:true,issue:'ألم متكرر في الظهر'},{k:'q4',v:true,issue:'ألم أو حساسية في الأسنان'},{k:'q5',v:false,issue:'تطعيمات سابقة غير مكتملة'}];
+const normQ=x=>String(x).replace(/[0-9]/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]).toLowerCase().trim();
+const fmt=v=>n(String(v)).replace('.','٫');
+function rosterRows(){
+  const P=S.pass,doc=P.role==='doc';
+  let L=ROSTER.filter(x=>doc?x.conds.length>0:x.sch==='am');
+  if(!doc&&P.cls!=='all')L=L.filter(x=>x.cls===P.cls);
+  if(doc&&P.sch!=='all')L=L.filter(x=>x.sch===P.sch);
+  const q=normQ(P.q);
+  if(q)L=L.filter(x=>[x.name,tr(x.name),x.id,SCH[x.sch],tr(SCH[x.sch])].some(f=>normQ(f).includes(q)));
+  return L.slice().sort((a,b)=>(b.conds.length>0)-(a.conds.length>0)||a.name.localeCompare(b.name,'ar'));
+}
+function rowHtml(x,doc){
+  return '<button class="ro-row" data-act="ropen" data-id="'+x.id+'"><div class="main"><div class="t">'+esc(x.name)+'</div><div class="d">'+(doc?SCH[x.sch]+' · ':'')+'الصف '+x.cls+' · رقم '+n(x.id)+'</div>'+
+   '<div class="ro-tags">'+(x.conds.length?x.conds.map(c=>'<span class="pill '+c.c+'">'+esc(c.t)+'</span>').join(''):'<span class="pill mute">لا حالات مسجلة</span>')+'</div></div><svg class="i chev" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>';
+}
+function rowsHtml(){
+  const doc=S.pass.role==='doc',L=rosterRows();
+  return '<div class="row"><span class="pill">'+n(L.length)+' '+(doc?'مريض':'طالب')+'</span></div>'+(L.length?L.map(x=>rowHtml(x,doc)).join(''):'<p class="lead">لا توجد نتائج مطابقة.</p>');
+}
+function rosterView(){
+  const P=S.pass,doc=P.role==='doc';
+  if(P.open){const x=ROSTER.find(r=>r.id===P.open);if(x)return profile(x,doc)}
+  const keys=doc?['all'].concat(Object.keys(SCH)):['all'].concat(CLASSES),cur=doc?P.sch:P.cls;
+  return '<div class="card"><h3>'+(doc?'قائمة مرضاي':'طلاب المدرسة')+'</h3><p class="lead">'+(doc?'مرضاك في كل المدارس. ابحث بالاسم أو رقم الطالب إذا لم يتوفر رمز QR.':'اضغط على أي طالب لعرض بياناته الصحية. ابحث بالاسم أو رقم الطالب إذا ضاع رمز QR.')+'</p>'+
+   '<label class="f" style="margin-top:10px">بحث<input type="search" id="ro-q" data-act="roq" autocomplete="off" value="'+esc(P.q)+'" placeholder="ابحث بالاسم أو رقم الطالب"></label>'+
+   '<div class="chips" style="margin:10px 0 0">'+keys.map(v=>'<button class="chip" data-act="rfil" data-v="'+v+'" aria-pressed="'+(cur===v)+'">'+(v==='all'?'الكل':doc?SCH[v]:'الصف '+v)+'</button>').join('')+'</div></div>'+
+   '<div class="stack" id="ro-list">'+rowsHtml()+'</div>';
+}
+function profile(x,doc){
+  const med=m=>{const e=m.exp===undefined?null:expPill(m);return '<li><div class="main"><div class="t">'+esc(m.n)+'</div><div class="d">'+esc(m.w)+'</div></div>'+(e?'<span class="pill '+e[0]+'">'+e[1]+'</span>':'')+'</li>'};
+  return '<div class="stack"><button class="btn small" style="justify-self:start" data-act="rclose">العودة إلى القائمة</button>'+
+  '<div class="resp-head"><div class="k">'+(doc?'الملف الصحي · عرض الطبيب':'بروتوكول الطوارئ · عرض المرشد الصحي')+'</div><div class="v">'+esc(x.name)+' · الصف '+x.cls+'</div></div>'+
+  '<div class="calm">سُجّل اطلاعك الساعة '+now()+' وأُشعر ولي الأمر.</div>'+
+  '<div class="card"><h3>بيانات الطالب</h3><ul class="list"><li><span>المدرسة</span><b>'+SCH[x.sch]+'</b></li><li><span>رقم الطالب</span><b class="mono">'+n(x.id)+'</b></li></ul></div>'+
+  '<div class="card"><h3>الحالات المسجلة</h3><div class="row" style="justify-content:flex-start">'+(x.conds.length?x.conds.map(c=>'<span class="pill '+c.c+'">'+esc(c.t)+'</span>').join(''):'<span class="pill mute">لا حالات مسجلة</span>')+'</div></div>'+
+  (doc?gProfile(x):'')+
+  '<div class="card"><h3>ما الذي تفعله الآن</h3>'+(x.steps.length?'<ol class="steps">'+x.steps.map(t=>'<li><span>'+esc(t)+'</span></li>').join('')+'</ol>':'<p class="lead">لا يوجد بروتوكول طوارئ خاص لهذا الطالب.</p>')+'</div>'+
+  (x.meds.length?'<div class="card"><h3>أين الأدوية والأدوات</h3><ul class="list">'+x.meds.map(med).join('')+'</ul></div>':'')+
+  '<div class="card"><h3>الاتصال</h3><div class="row"><span>الإسعاف</span><b class="mono">٩٩٧</b></div><div class="row"><span>ولي الأمر</span><b class="mono">'+esc(x.phone)+'</b></div></div>'+
+  (x.key?'<button class="btn primary block" data-act="rplan" data-k="'+x.key+'">عرض الخطة العلاجية</button>':'')+'</div>';
+}
+const EXAMS=[
+ {k:'vis',t:'فحص النظر',d:'قياس حدّة البصر بلوحة الفحص'},
+ {k:'spi',t:'فحص انحناء العمود الفقري',d:'فحص سريع لحدبة الظهر أثناء الوقوف'},
+ {k:'den',t:'الفحص السريري للأسنان',d:'نظرة عامة على الأسنان واللثة، دون علاج'},
+ {k:'vac',t:'التطعيم المدرسي المستحق',d:'الجرعة المستحقة حسب جدول المركز الصحي'}];
+const QS=[
+ {k:'q1',t:'هل يشتكي من صعوبة قراءة السبورة؟'},
+ {k:'q2',t:'هل يرتدي نظارة أو عدسات؟'},
+ {k:'q3',t:'هل يشتكي من ألم متكرر في الظهر؟'},
+ {k:'q4',t:'هل يشتكي من ألم أو حساسية في الأسنان؟'},
+ {k:'q5',t:'هل أخذ كل تطعيماته السابقة؟'}];
+const CLASSES=['٣/أ','٤/ب','٥/ب','٦/أ'];
+const SYMS=['حرارة','طفح جلدي','قيء','إسهال','سعال'];
+const ALG={peanut:'فول سوداني',gluten:'جلوتين',dairy:'ألبان'};
+const PROD=[
+ {id:'p1',n:'ساندويتش زبدة الفول السوداني',p:6,al:['peanut','gluten']},
+ {id:'p2',n:'ساندويتش جبنة',p:5,al:['dairy','gluten']},
+ {id:'p3',n:'حليب بنكهة الفراولة',p:3,al:['dairy']},
+ {id:'p4',n:'بسكويت الشوفان بالفول السوداني',p:3,al:['peanut','gluten']},
+ {id:'p5',n:'كعكة التمر',p:3.5,al:['gluten']},
+ {id:'p6',n:'عصير برتقال طبيعي',p:4,al:[]},
+ {id:'p7',n:'تفاحة',p:2,al:[]}];
+/* القيم الغذائية تقريبية وللتجربة: [كربوهيدرات جم، سكر جم] */
+const NUT={p1:[38,6],p2:[30,3],p3:[24,22],p4:[20,9],p5:[45,28],p6:[26,21],p7:[20,15]};
+const DIA={yusuf:true};
+const TRIP=[{n:'سارة',i:'حقنة إبيبن (نسختان)',w:'المشرفة نورة'},{n:'يوسف',i:'الأنسولين والإبر وشرائط الفحص',w:'المشرف خالد'},{n:'ريم',i:'بخاخ الربو',w:'المشرف خالد'}];
+const ACTS={omar:['أُعطيت حقنة الإبيبن','اتُّصل بالإسعاف 997','أُبلغ ولي الأمر','أُعطي مضاد الهيستامين'],sara:['أُعطيت حقنة الإبيبن','اتُّصل بالإسعاف 997','أُبلغ ولي الأمر','أُعطي بخاخ الإسعاف'],yusuf:['قِيس السكر','أُعطي مصدر سكر سريع','اتُّصل بالإسعاف 997','أُبلغ ولي الأمر']};
+function cartCarbs(){return S.can.cart.reduce((a,id)=>a+NUT[id][0],0)}
+function nutTag(id){return DIA[S.stu]?'<span class="tag mono'+(NUT[id][1]>=20?' sw':'')+'">'+n(NUT[id][0])+' جم كربوهيدرات</span>':''}
+function diaCard(){
+  if(!DIA[S.stu])return '';
+  const lim=S.can.limit[S.stu],c=cartCarbs(),pct=Math.min(100,Math.round(c/lim*100)),over=c>lim,al=S.can.al[S.stu];
+  const sug=PROD.filter(p=>!p.al.some(a=>al.includes(a))).sort((a,b)=>NUT[a.id][1]-NUT[b.id][1]).slice(0,2);
+  return '<div class="card"><div class="row"><h3 style="margin:0">وضع السكري</h3><span class="pill '+(over?'crit':c>lim*0.8?'warn':'ok')+'">'+(over?'يتجاوز الحد':c>lim*0.8?'قريب من الحد':'ضمن الحد')+'</span></div>'+
+  '<p class="lead">حد الكربوهيدرات لمشتريات المقصف يحدده الطبيب، ويراه ولي الأمر والمرشد.</p>'+
+  '<div class="row" style="margin-top:8px"><span>الحد لوجبة المقصف</span><div class="stepper"><button data-act="lim" data-d="-5" aria-label="تقليل الحد">−</button><output class="mono">'+n(lim)+' جم</output><button data-act="lim" data-d="5" aria-label="زيادة الحد">+</button></div></div>'+
+  '<div class="prog '+(over?'crit':'ok')+'" style="margin-top:10px"><i style="width:'+pct+'%"></i></div>'+
+  '<p class="lead" style="margin-top:6px">السلة الحالية: <b class="mono">'+n(c)+'</b> من '+n(lim)+' جم</p>'+
+  (over?'<label class="chk"><input type="checkbox" data-act="ovr"'+(S.can.ovr?' checked':'')+'><span>موافقة المرشد الصحي على تجاوز الحد (مثلاً بعد قياس السكر)</span></label>':'')+
+  '<p class="lead" style="margin-top:8px">الأنسب لـ '+esc(ST[S.stu].first)+' الآن: <b>'+sug.map(p=>p.n).join('، ')+'</b></p>'+
+  '<p class="lead">القيم الغذائية تقريبية وللتجربة فقط.</p></div>';
+}
+function tripCard(){
+  const t=S.trip,done=t.ok.filter(Boolean).length;
+  return '<div class="card"><div class="row"><div><h3 style="margin:0">وضع الرحلة المدرسية</h3><p class="lead">رحلة الصف ٥/ب · الخميس ١٩ نوفمبر</p></div><label class="chk" style="min-height:0"><input type="checkbox" data-act="trip"'+(t.on?' checked':'')+' aria-label="تفعيل وضع الرحلة"><span>'+(t.on?'مفعّل':'مطفأ')+'</span></label></div>'+
+  (t.on?'<p class="notice" style="margin-top:10px">يعمل بدون إنترنت: حُفظت بروتوكولات الطوارئ مشفّرة على جهاز المشرف، ويُرسل سجل الاطلاع عند عودة الاتصال.</p><ul class="list">'+TRIP.map((r,i)=>'<li><label class="chk" style="flex:1"><input type="checkbox" data-act="tripchk" data-i="'+i+'"'+(t.ok[i]?' checked':'')+'><span><b>'+r.n+'</b> · '+r.i+'<br><span class="lead">يحملها: '+r.w+'</span></span></label></li>').join('')+'</ul><div class="prog'+(done===TRIP.length?' ok':'')+'" style="margin-top:8px"><i style="width:'+Math.round(done/TRIP.length*100)+'%"></i></div><p class="lead" style="margin-top:6px">جاهزية الرحلة: '+n(done)+' من '+n(TRIP.length)+'</p>':'')+'</div>';
+}
+function incCards(s){
+  const L=S.inc[S.stu],acts=ACTS[S.stu];
+  const sum=['ملخص تسليم الإسعاف','الاسم: '+s.name+' · الصف '+s.cls,'الحالات: '+s.conds.map(c=>c.t).join('، '),'الأدوية والأدوات: '+s.meds.map(m=>m.n).join('، '),'الإجراءات: '+(L.length?L.slice().reverse().map(x=>x.t+' '+x.a).join(' ← '):'لم تُسجَّل إجراءات بعد'),'ولي الأمر: '+s.phone].join('\n');
+  return '<div class="card"><h3>سجل الإجراءات</h3><p class="lead">اضغط عند تنفيذ كل إجراء ليُسجَّل وقته.</p><div class="row" style="justify-content:flex-start;margin-top:8px">'+acts.map((a,i)=>'<button class="btn small" data-act="inc" data-i="'+i+'">'+a+'</button>').join('')+'</div>'+
+  (L.length?'<ul class="log">'+L.map(x=>'<li><b class="mono">'+x.t+'</b> · '+x.a+'</li>').join('')+'</ul><button class="btn primary small" style="margin-top:10px" data-act="closeinc">إنهاء الحالة وإرسال التقرير لولي الأمر</button>':'')+'</div>'+
+  '<div class="card"><h3>ملخص تسليم الإسعاف</h3><pre id="inc-sum" style="white-space:pre-wrap;font:inherit;margin:8px 0 0;background:var(--bg);border-radius:10px;padding:10px;font-size:13.5px">'+esc(sum)+'</pre><button class="btn small" style="margin-top:10px" data-act="copysum">نسخ الملخص</button></div>';
+}
+const REFSTEPS=['اكتُشفت الحالة','أُرسل التحويل للمركز الصحي','حُجز موعد','حضر الطالب وأُغلقت الحالة'];
+const REF0=()=>[
+ {id:1,stu:'sara',name:'سارة العبدالله',cls:'٥/ب',issue:'اشتباه قصر نظر',step:1,appt:''},
+ {id:2,stu:null,name:'ريان الدوسري',cls:'٤/ب',issue:'اشتباه انحناء في العمود الفقري',step:0,appt:''},
+ {id:3,stu:null,name:'لجين القحطاني',cls:'٣/أ',issue:'تسوس يحتاج علاجاً',step:2,appt:'الثلاثاء ٢٤ نوفمبر · ١٠:٣٠'},
+ {id:4,stu:null,name:'فهد العتيبي',cls:'٦/أ',issue:'اشتباه ضعف نظر',step:3,appt:'الأحد ٨ نوفمبر'}];
+const REPORTS0=()=>[{c:'٤/ب',s:'حرارة',h:60},{c:'٤/ب',s:'حرارة',h:40},{c:'٤/ب',s:'حرارة',h:26},{c:'٤/ب',s:'حرارة',h:9},{c:'٥/ب',s:'قيء',h:15},{c:'٣/أ',s:'طفح جلدي',h:33}];
+const PLANS={
+ yusuf:{title:'خطة السكري',metric:'قراءة سكر الدم',unit:'mg/dL',low:80,high:180,min:40,max:300,
+  readings:[{t:'٠٧:٤٥',v:128},{t:'١٠:٣٠',v:96},{t:'١٢:١٥',v:148}],doses:[{t:'٠٧:٥٠',u:4}],
+  steps:{low:'قِس مجدداً، وقدّم مصدر سكر سريع كما كتبه الطبيب، ثم أبلغ الوالدين.',high:'اشرب ماءً واتبع تعليمات الطبيب بشأن التصحيح، وأبلغ الوالدين.'},
+  checks:[{t:'جرعة الصباح أُعطيت',d:true},{t:'وجبة الإفطار مسجلة',d:true},{t:'حقيبة الطوارئ جاهزة',d:false}],note:'',edited:'د. نورة السالم (مثال) · قبل أسبوع'},
+ omar:{kind:'allergy',title:'خطة الحساسية',steps:['استخدم حقنة الإبيبن فوراً في الجانب الخارجي من الفخذ عند ظهور أعراض شديدة (صعوبة تنفس، تورم الوجه أو الشفتين، دوخة).','اتصل بالإسعاف على 997 حتى لو تحسنت الأعراض بعد الحقنة.','أجلس الطالب أو أضجعه مع رفع الساقين، ولا تتركه وحده.','سجّل وقت الحقنة وأبلغ ولي الأمر.'],
+  checks:[{t:'حقنة الإبيبن في حقيبته',d:true},{t:'وجبة اليوم خالية من الفول السوداني',d:true},{t:'مضاد الهيستامين في عيادة المدرسة',d:false}],note:'',edited:'د. نورة السالم (مثال) · قبل أسبوعين'},
+ sara:{kind:'asthma',title:'خطة الربو',att:null,hist:[{d:'الأحد ١ نوفمبر'}],msgs:[],
+  steps:['عند ضيق النفس أو الصفير أو السعال المستمر: أعطِ بخاخ الإسعاف كما كتبه الطبيب وأجلس الطالب بوضع مريح.','أعد التقييم بعد ١٥ دقيقة، وإن لم تتحسن الأعراض أو ازداد الضيق اتصل بالإسعاف على 997.','أبلغ ولي الأمر وسجّل النوبة.'],
+  checks:[{t:'البخاخ الوقائي أُعطي صباحاً',d:true},{t:'بخاخ الإسعاف في الحقيبة',d:true},{t:'لا مسببات معروفة اليوم (غبار، عطور قوية)',d:false}],note:'',edited:'د. نورة السالم (مثال) · قبل أسبوع'}
+};
+const S={
+ tab:'pass',stu:'sara',scan:false,tok:Math.random().toString(36).slice(2,8).toUpperCase(),
+ log:{omar:[{t:'أمس ١١:٢٠',w:'المرشدة الصحية',y:'مراجعة خطة الحساسية'}],sara:[{t:'أمس ٠٩:٤٠',w:'المرشدة الصحية',y:'مراجعة الملف'}],yusuf:[{t:'الأحد ١٠:١٥',w:'المرشدة الصحية',y:'تحديث خطة السكري'}]},
+ screen:{role:'par',consent:{sara:{},yusuf:{},omar:{}},ans:{sara:{},yusuf:{},omar:{}},sent:{sara:false,yusuf:false,omar:false},reminded:{}},
+ sv:{th:4,reports:REPORTS0(),sent:{},cls:'٤/ب',sym:'حرارة'},
+ can:{cart:[],bal:{sara:45,yusuf:32,omar:38},flash:null,limit:{yusuf:45},ovr:false,last:{},al:{sara:['peanut'],yusuf:['dairy'],omar:['peanut']},lock:{sara:['peanut'],yusuf:['dairy'],omar:['peanut']},log:[]},
+ plans:PLANS,prole:'nur',ref:REF0(),seq:100,cnTo:'both',cnText:'',pass:{role:'par',cls:'all',sch:'all',q:'',open:null},reg:{ind:'vac'},trip:{on:false,ok:[false,false,false]},gro:{role:'nur',m:'H',cons:{sara:true,yusuf:true,omar:true},d:{omar:{y:['٢٠٢٣','٢٠٢٤','٢٠٢٥'],a:[7.5,8.5,9.5],h:[121,127,133],w:[24,27,30]},sara:{y:['٢٠٢٣','٢٠٢٤','٢٠٢٥'],a:[8.5,9.5,10.5],h:[121,126,131],w:[22,25,28]},yusuf:{y:['٢٠٢٣','٢٠٢٤','٢٠٢٥'],a:[8.5,9.5,10.5],h:[122,127,131],w:[23,26,30]}}},inc:{sara:[],yusuf:[],omar:[]}
+};
+
+/* ---------- helpers ---------- */
+const ICON={
+ pass:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M14 14h2v2h-2zM19 14h1M14 19h2M18 18h2v2"/>',
+ scr:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM8.500 13l2.200 2.200 4.800-4.700"/>',
+ alr:'<path d="M3 12h4l2.500-6 4 12 2.500-6H21"/>',
+ can:'<path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2 2 4-4"/>',
+ pln:'<path d="M12 20s-7-4.400-7-10a4 4 0 0 1 7-2.600A4 4 0 0 1 19 10c0 5.600-7 10-7 10z"/>'};
+ICON.reg='<path d="M5 20v-9M12 20V4M19 20v-6M3 20h18"/>';
+ICON.gro='<path d="M4 20c4 0 4-6 8-6s4-6 8-10"/><path d="M4 20h16"/>';
+const TABS=[['pass','الجواز','pass'],['scr','الفحص','scr'],['alr','الإنذار','alr'],['can','المقصف','can'],['pln','الخطة','pln'],['gro','النمو','gro'],['reg','المنطقة','reg']];
+function toast(m){const t=$('#toast');t.firstElementChild.textContent=tr(m);t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),2800)}
+function qrSvg(text){
+  const q=qrcode(0,'M');q.addData(text);q.make();const c=q.getModuleCount();let d='';
+  for(let r=0;r<c;r++)for(let k=0;k<c;k++)if(q.isDark(r,k))d+='M'+k+' '+r+'h1v1h-1z';
+  return '<svg viewBox="0 0 '+c+' '+c+'" shape-rendering="crispEdges" role="img" aria-label="رمز QR تجريبي"><path d="'+d+'" fill="var(--qr-fg)"/></svg>';
+}
+const expPill=m=>m.exp<=60?['warn','شارفت على الانتهاء']:['ok',m.sup?'عدد كافٍ':'سارية'];
+const soonTxt=s=>{const l=s.meds.filter(m=>m.exp<=60).map(m=>m.n);return l.length?'<p class="notice" style="margin-top:10px">أُرسل تذكير لولي الأمر لتجديد: '+l.join('، ')+'.</p>':''};
+const tl=x=>'<ol class="tl">'+REFSTEPS.map((t,i)=>'<li class="'+(i<=x.step?'on':'')+'"><span>'+t+'</span></li>').join('')+'</ol>';
+const seg=(act,cur,items)=>'<div class="seg" role="group">'+items.map(i=>'<button data-act="'+act+'" data-v="'+i[0]+'" aria-pressed="'+(cur===i[0])+'">'+i[1]+'</button>').join('')+'</div>';
+const yn=(act,k,val,a,b)=>'<div class="yn" role="group"><button data-act="'+act+'" data-k="'+k+'" data-v="1" aria-pressed="'+(val===true)+'">'+a+'</button><button data-act="'+act+'" data-k="'+k+'" data-v="0" aria-pressed="'+(val===false)+'">'+b+'</button></div>';
+
+/* ---------- views ---------- */
+function respView(s){
+  return '<div class="stack">'+
+  '<div class="resp-head"><div class="k">بروتوكول الطوارئ · عرض المرشد الصحي</div><div class="v">'+esc(s.name)+' · الصف '+s.cls+'</div></div>'+
+  '<div class="calm">سُجّل اطلاعك الساعة '+now()+' وأُشعر ولي الأمر.</div>'+
+  '<div class="card"><h3>الحالات المسجلة</h3><div class="row" style="justify-content:flex-start">'+s.conds.map(c=>'<span class="pill '+c.c+'">'+esc(c.t)+'</span>').join('')+'</div></div>'+
+  '<div class="card"><h3>ما الذي تفعله الآن</h3><ol class="steps">'+s.steps.map(t=>'<li><span>'+esc(t)+'</span></li>').join('')+'</ol></div>'+
+  '<div class="card"><h3>أين الأدوية والأدوات</h3><ul class="list">'+s.meds.map(m=>'<li><div class="main"><div class="t">'+esc(m.n)+'</div><div class="d">'+esc(m.w)+'</div></div></li>').join('')+'</ul></div>'+
+  incCards(s)+'<div class="card"><h3>الاتصال</h3><div class="row"><span>الإسعاف</span><b class="mono">٩٩٧</b></div><div class="row"><span>ولي الأمر</span><b class="mono">'+esc(s.phone)+'</b></div></div>'+
+  '<button class="btn block" data-act="endscan">إغلاق العرض</button></div>';
+}
+function viewPass(){
+  const s=ST[S.stu];
+  if(S.pass.role!=='par')return '<div class="stack">'+seg('prl',S.pass.role,PSEG)+rosterView()+'</div>';
+  if(S.scan)return respView(s);
+  const qr=typeof qrcode==='function'?qrSvg('HASEEN-DEMO-'+s.id+'-'+S.tok):'<div class="qr-fallback">QR</div>';
+  return '<div class="stack">'+
+  seg('prl',S.pass.role,PSEG)+'<div class="passport"><div class="pp-top"><b>جواز الصحة الطارئ</b><span>مدرسة الأمل الابتدائية · مثال</span></div>'+
+  '<div class="pp-body"><div class="pp-info"><div class="pp-name">'+esc(s.name)+'</div><div class="pp-meta">الصف '+s.cls+' · رقم '+n(s.id)+'</div>'+
+  '<div class="pp-note">يفتح الرمز ملف الطوارئ لدى المرشد الصحي فقط، ولا يحمل أي بيانات صحية بحد ذاته.</div></div><div class="qr">'+qr+'</div></div></div>'+
+  '<button class="btn primary block" data-act="scan">محاكاة مسح الرمز كمرشد صحي</button>'+
+  tripCard()+'<div class="card"><h3>ما يظهر للمرشد عند المسح</h3><ul class="list">'+
+  s.conds.map(c=>'<li><div class="main"><div class="t">'+esc(c.t)+'</div></div><span class="pill '+c.c+'">'+(c.c==='crit'?'طارئ':'متابعة')+'</span></li>').join('')+
+  s.meds.map(m=>'<li><div class="main"><div class="t">'+esc(m.n)+'</div><div class="d">'+esc(m.w)+'</div></div></li>').join('')+'</ul></div>'+
+  '<div class="card"><h3>صلاحية الأدوية</h3><ul class="list">'+s.meds.map(m=>{const e=expPill(m);return '<li><div class="main"><div class="t">'+esc(m.n)+'</div></div><span class="pill '+e[0]+'">'+e[1]+'</span></li>'}).join('')+'</ul>'+soonTxt(s)+'</div>'+
+  '<div class="card"><h3>سجل الاطلاع</h3><p class="lead">كل مرة يُفتح فيها ملف '+esc(s.first)+' تظهر هنا.</p><ul class="log">'+
+  S.log[S.stu].map(l=>'<li><b>'+esc(l.w)+'</b> · '+esc(l.y)+'<div class="d lead">'+esc(l.t)+'</div></li>').join('')+'</ul></div></div>';
+}
+function refParent(){
+  const r=S.ref.filter(x=>x.stu===S.stu);
+  return r.map(x=>'<div class="card"><div class="row"><div><h3 style="margin:0">تحويل إلى المركز الصحي</h3><p class="lead">'+esc(x.issue)+'</p></div><span class="pill '+(x.step===3?'ok':'warn')+'">'+(x.step===3?'مغلقة':'مفتوحة')+'</span></div>'+tl(x)+(x.appt&&x.step<3?'<p class="calm" style="margin:10px 0 0">موعدك: '+x.appt+'</p>':'')+'</div>').join('');
+}
+function refTeam(){
+  const tot=S.ref.length,cl=S.ref.filter(x=>x.step===3).length;
+  const nxt=['إرسال التحويل للمركز الصحي','تسجيل حجز الموعد','تأكيد الحضور وإغلاق الحالة'];
+  return '<div class="card"><div class="row"><h3 style="margin:0">التحويلات (الفحص والاستبيانات)</h3><span class="pill '+(cl===tot?'ok':'warn')+'">مغلقة '+n(cl)+' من '+n(tot)+'</span></div><p class="lead">لا تُترك حالة دون متابعة: كل تحويل يمر بأربع مراحل حتى يُغلق.</p>'+
+  S.ref.map(x=>'<div class="q" style="display:block"><div class="row"><div class="main"><div class="t">'+esc(x.name)+' · '+x.cls+'</div><div class="lead">'+esc(x.issue)+'</div>'+(x.src?'<span class="tag">من الاستبيان</span>':'')+'</div>'+(x.step<3?'<button class="btn small" data-act="refnext" data-id="'+x.id+'">'+nxt[x.step]+'</button>':'<span class="pill ok">مغلقة</span>')+'</div>'+tl(x)+'</div>').join('')+'</div>';
+}
+function viewScr(){
+  const s=ST[S.stu],sc=S.screen;
+  let body='';
+  if(sc.role==='par'){
+    const c=sc.consent[S.stu],a=sc.ans[S.stu];
+    const done=Object.keys(c).length+Object.keys(a).length,total=EXAMS.length+QS.length,pct=Math.round(done/total*100),ready=done===total,sent=sc.sent[S.stu];
+    body='<div class="card"><div class="row"><div><h3 style="margin:0">زيارة الفريق الصحي</h3><p class="lead">الأحد ٢٢ نوفمبر ٢٠٢٦ · مدرسة الأمل</p></div><span class="pill '+(sent?'ok':'warn')+'">'+(sent?'تم الإرسال':'بانتظار ردك')+'</span></div>'+
+    '<div class="prog'+(ready?' ok':'')+'" style="margin-top:12px"><i style="width:'+pct+'%"></i></div><p class="lead" style="margin-top:6px">'+n(done)+' من '+n(total)+' خطوات لـ '+esc(s.first)+'</p></div>'+
+    '<div class="card"><h3>الموافقات</h3>'+EXAMS.map(e=>'<div class="q"><div class="main"><div class="t">'+e.t+'</div><div class="lead">'+e.d+'</div></div>'+yn('cons',e.k,c[e.k],'أوافق','لا')+'</div>').join('')+'</div>'+
+    '<div class="card"><h3>استبيان الفحص الأولي</h3>'+QS.map(q=>'<div class="q"><div class="main">'+q.t+'</div>'+yn('ans',q.k,a[q.k],'نعم','لا')+'</div>').join('')+'</div>'+
+    '<button class="btn primary block" data-act="submit" '+((!ready||sent)?'disabled':'')+'>'+(sent?'تم الإرسال إلى الفريق الصحي':'إرسال الموافقات والاستبيان')+'</button>'+
+    (sent?'<p class="lead">يمكنك تعديل الإجابات قبل الزيارة، وسيصل التحديث تلقائياً.</p>':'');
+  }else{
+    const extra=(sc.sent.sara?1:0)+(sc.sent.yusuf?1:0)+(sc.sent.omar?1:0);
+    const cls=[{c:'٣/أ',t:28,d:27},{c:'٤/ب',t:30,d:24},{c:'٥/ب',t:28,d:22+extra},{c:'٦/أ',t:31,d:31}];
+    const T=cls.reduce((x,y)=>x+y.t,0),D=cls.reduce((x,y)=>x+y.d,0);
+    body='<div class="card"><h3>جاهزية الزيارة</h3><div class="row"><b style="font-size:26px;font-family:var(--f-head)" class="mono">'+n(Math.round(D/T*100))+'٪</b><span class="lead">'+n(D)+' من '+n(T)+' ولي أمر أرسلوا ردودهم</span></div><div class="prog" style="margin-top:10px"><i style="width:'+Math.round(D/T*100)+'%"></i></div></div>'+
+    '<div class="card"><h3>الصفوف</h3>'+cls.map(r=>{const p=r.t-r.d;return '<div class="q"><div class="main"><div class="t">الصف '+r.c+'</div><div class="prog'+(p===0?' ok':'')+'" style="margin-top:6px;width:150px;max-width:100%"><i style="width:'+Math.round(r.d/r.t*100)+'%"></i></div><div class="lead">'+n(r.d)+' من '+n(r.t)+'</div></div>'+
+      (p===0?'<span class="pill ok">مكتمل</span>':(sc.reminded[r.c]?'<span class="pill mute">أُرسل التذكير</span>':'<button class="btn small" data-act="remind" data-c="'+r.c+'">تذكير '+n(p)+'</button>'))+'</div>'}).join('')+'</div>'+
+    '<p class="notice">عند وصول الفريق تكون الموافقات ونتائج الاستبيان جاهزة، ويُستخدم وقت الزيارة للفحص والتقييم فقط.</p>'+refTeam();
+  }
+  return '<div class="stack">'+seg('srole',sc.role,[['par','ولي الأمر'],['team','الفريق الصحي']])+(sc.role==='par'?refParent():'')+body+'</div>';
+}
+function viewAlr(){
+  const v=S.sv,rec=v.reports.filter(r=>r.h<=48),g={};
+  rec.forEach(r=>{const k=r.c+'|'+r.s;g[k]=(g[k]||0)+1});
+  const rows=Object.entries(g).map(([k,c])=>{const p=k.split('|');return{k,c:p[0],s:p[1],v:c}}).sort((a,b)=>b.v-a.v);
+  const al=rows.filter(r=>r.v>=v.th),mx=Math.max(v.th,...rows.map(r=>r.v),1)+1;
+  return '<div class="stack">'+
+  '<div class="card"><h3>بلاغ غياب من ولي أمر (محاكاة)</h3><p class="lead">أضف بلاغاً وراقب كيف يتحول التجمع إلى تنبيه.</p>'+
+  '<div class="row" style="margin-top:10px;align-items:flex-end"><label class="f">الصف<select data-act="svsel" data-k="cls" id="sv-c">'+CLASSES.map(c=>'<option value="'+c+'"'+(c===v.cls?' selected':'')+'>'+c+'</option>').join('')+'</select></label>'+
+  '<label class="f">العرض<select data-act="svsel" data-k="sym" id="sv-s">'+SYMS.map(c=>'<option value="'+c+'"'+(c===v.sym?' selected':'')+'>'+c+'</option>').join('')+'</select></label></div>'+
+  '<button class="btn primary block" style="margin-top:10px" data-act="svadd">تسجيل البلاغ</button></div>'+
+  (al.length?al.map(r=>'<div class="alert"><div class="h">تنبيه: تجمع محتمل</div><div><b>'+n(r.v)+' '+(r.v<=10?'حالات':'حالة')+' '+r.s+'</b> في الصف '+r.c+' خلال ٤٨ ساعة.</div>'+
+     '<div class="lead">المعتاد لهذا الصف نحو بلاغ واحد كل ٤٨ ساعة (مثال)، والعدد الحالي '+n(r.v)+' أضعاف ذلك.</div>'+
+     '<div class="lead">يصل المركز الصحي العدد والصف والأعراض دون أسماء الطلاب.</div>'+
+     (v.sent[r.k]?'<span class="pill ok">أُرسل إلى المركز الصحي الساعة '+v.sent[r.k]+'</span>':'<button class="btn primary small" data-act="svsend" data-key="'+r.k+'">إبلاغ المركز الصحي التابع للمنطقة</button>')+'</div>').join('')
+   :'<div class="calm">لا توجد تنبيهات. لم يبلغ عدد البلاغات المتشابهة حد الإنذار.</div>')+
+  '<div class="card"><div class="row"><h3 style="margin:0">حد الإنذار</h3><div class="stepper"><button data-act="svth" data-d="-1" aria-label="تقليل">−</button><output class="mono">'+n(v.th)+'</output><button data-act="svth" data-d="1" aria-label="زيادة">+</button></div></div>'+
+  '<p class="lead">عدد البلاغات المتشابهة في الصف نفسه خلال ٤٨ ساعة. البلاغات الأقدم لا تُحتسب.</p>'+
+  '<div class="bars">'+(rows.length?rows.map(r=>'<div class="bar"><div class="lbl"><span>الصف '+r.c+' · '+r.s+'</span><b class="mono">'+n(r.v)+'</b></div><div class="track"><i class="'+(r.v>=v.th?'hot':'')+'" style="width:'+Math.round(r.v/mx*100)+'%"></i><b style="inset-inline-start:'+Math.round(v.th/mx*100)+'%"></b></div></div>').join(''):'<p class="lead">لا بلاغات في آخر ٤٨ ساعة.</p>')+'</div>'+
+  '<button class="btn small" style="margin-top:12px" data-act="svreset">إعادة ضبط التجربة</button></div></div>';
+}
+function viewCan(){
+  const s=ST[S.stu],al=S.can.al[S.stu],lock=S.can.lock[S.stu],cart=S.can.cart,total=cart.reduce((a,id)=>a+PROD.find(p=>p.id===id).p,0);
+  return '<div class="stack">'+
+  '<div class="card"><div class="row"><div><h3 style="margin:0">بطاقة المقصف · '+esc(s.first)+'</h3><p class="lead">الرصيد '+money(S.can.bal[S.stu])+' ر.س</p></div></div>'+
+  '<p class="lead" style="margin-top:10px">خريطة الحساسيات (يحددها ولي الأمر):</p><div class="row" style="justify-content:flex-start;margin-top:6px">'+
+  Object.keys(ALG).map(k=>{const on=al.includes(k),lk=lock.includes(k);return '<button class="chip" data-act="alg" data-k="'+k+'" aria-pressed="'+on+'">'+(on?'✓ ':'')+ALG[k]+(lk?' 🔒':'')+'</button>'}).join('')+'</div>'+
+  (lock.length?'<p class="lead" style="margin-top:6px">🔒 مرتبطة بحالة طبية، ولا تُزال إلا بتحديث من الطبيب.</p>':'')+'</div>'+
+  diaCard()+'<div class="card"><h3>قائمة المقصف (شاشة البيع)</h3>'+PROD.map(p=>'<div class="prod'+(S.can.flash===p.id?' flash':'')+'"><div style="min-width:0"><div class="t" style="font-weight:500">'+p.n+'</div><div class="tags"><span class="tag mono">'+money(p.p)+' ر.س</span>'+nutTag(p.id)+p.al.map(a=>'<span class="tag'+(al.includes(a)?' hit':'')+'">'+ALG[a]+'</span>').join('')+'</div></div><button class="btn small" data-act="buy" data-id="'+p.id+'">إضافة</button></div>').join('')+'</div>'+
+  '<div class="card"><h3>السلة</h3>'+(cart.length?'<ul class="list">'+cart.map((id,i)=>{const p=PROD.find(x=>x.id===id);return '<li><div class="main">'+p.n+'</div><div class="row" style="gap:8px"><span class="mono">'+money(p.p)+'</span><button class="btn small" data-act="rm" data-i="'+i+'" aria-label="حذف '+p.n+'">حذف</button></div></li>'}).join('')+'</ul><div class="row" style="margin-top:12px"><b>المجموع</b><b class="mono">'+money(total)+' ر.س</b></div><button class="btn primary block" style="margin-top:10px" data-act="pay">إتمام الشراء</button>':'<p class="lead">السلة فارغة. جرّب إضافة منتج فيه مسبب حساسية.</p>')+'</div>'+
+  '<div class="card"><h3>تنبيهات المنع</h3>'+(S.can.log.length?'<ul class="log">'+S.can.log.map(l=>'<li class="crit">'+l+'</li>').join('')+'</ul>':'<p class="lead">لا توجد محاولات ممنوعة بعد.</p>')+'</div></div>';
+}
+const stat=(p,v)=>v<p.low?{k:'low',l:'أقل من النطاق',c:'crit'}:v>p.high?{k:'high',l:'أعلى من النطاق',c:'warn'}:{k:'ok',l:'ضمن النطاق',c:'ok'};
+function chart(p){
+  const rd=p.readings.slice(-8),W=320,H=160,L=42,R=14,T=12,B=26;
+  const x=i=>rd.length<2?(L+W-R)/2:L+i*(W-L-R)/(rd.length-1);
+  const y=v=>T+(H-T-B)*(1-(Math.min(p.max,Math.max(p.min,v))-p.min)/(p.max-p.min));
+  const pts=rd.map((r,i)=>x(i).toFixed(1)+','+y(r.v).toFixed(1)).join(' ');
+  return '<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="الرسم البياني للقراءات مع النطاق المسموح">'+
+   '<rect x="'+L+'" y="'+y(p.high).toFixed(1)+'" width="'+(W-L-R)+'" height="'+(y(p.low)-y(p.high)).toFixed(1)+'" fill="var(--ok-soft)"/>'+
+   '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(p.low).toFixed(1)+'" y2="'+y(p.low).toFixed(1)+'" stroke="var(--ok)" stroke-dasharray="3 3"/>'+
+   '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(p.high).toFixed(1)+'" y2="'+y(p.high).toFixed(1)+'" stroke="var(--ok)" stroke-dasharray="3 3"/>'+
+   '<text x="'+(L-6)+'" y="'+(y(p.low)+3).toFixed(1)+'" text-anchor="end">'+n(p.low)+'</text>'+
+   '<text x="'+(L-6)+'" y="'+(y(p.high)+3).toFixed(1)+'" text-anchor="end">'+n(p.high)+'</text>'+
+   (rd.length>1?'<polyline points="'+pts+'" fill="none" stroke="var(--brand)" stroke-width="2"/>':'')+
+   rd.map((r,i)=>{const s=stat(p,r.v);return '<circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.v).toFixed(1)+'" r="5" fill="var(--'+s.c+')" stroke="var(--surface)" stroke-width="2"/><text x="'+x(i).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle">'+r.t+'</text>'}).join('')+'</svg>';
+}
+const CNTO={par:'إلى الوالدين',doc:'إلى الطبيب',both:'إلى الوالدين والطبيب'};
+function cnCard(p,role){
+  const L=(p.cnotes||[]).filter(x=>role==='nur'||x.to==='both'||x.to===role);
+  return (role==='nur'?'<div class="card"><h3>كتابة ملاحظة</h3><p class="lead">تصل الملاحظة إلى من تختاره فور إرسالها.</p><div style="margin-top:10px">'+seg('cnto',S.cnTo,[['par','الوالدان'],['doc','الطبيب'],['both','كلاهما']])+'</div>'+
+    '<textarea id="pl-cnote" data-act="cntext" style="margin-top:10px" maxlength="500" placeholder="اكتب ملاحظتك هنا">'+esc(S.cnText)+'</textarea><button class="btn primary block" style="margin-top:10px" data-act="sendCn">إرسال الملاحظة</button></div>':'')+
+  '<div class="card"><h3>ملاحظات المرشد الصحي</h3>'+(L.length?'<ul class="log">'+L.slice().reverse().map(x=>'<li><b class="mono">'+x.t+'</b> · <span class="tag">'+CNTO[x.to]+'</span><div data-keep style="margin-top:4px">'+esc(x.text)+'</div></li>').join('')+'</ul>':'<p class="lead">لا توجد ملاحظات بعد.</p>')+'</div>';
+}
+function doseCard(p,edit){
+  if(!p.doses)return '';
+  return (edit?'<div class="card"><h3>تسجيل جرعة الأنسولين</h3><p class="lead">سجّل الجرعة التي أخذها الطفل.</p><div class="row" style="align-items:flex-end;margin-top:8px"><label class="f">عدد وحدات الأنسولين<input type="number" id="pl-dose" inputmode="decimal" step="0.5" placeholder="مثال: ٤"></label><button class="btn primary" data-act="addDose">تسجيل الجرعة</button></div></div>':'')+
+  '<div class="card"><h3>جرعات الأنسولين اليوم</h3>'+(p.doses.length?'<ul class="list">'+p.doses.slice().reverse().map(d=>'<li><div class="main"><b class="mono">'+fmt(d.u)+'</b> وحدة</div><span class="mono">'+d.t+'</span></li>').join('')+'</ul>':'<p class="lead">لا جرعات مسجلة اليوم.</p>')+'</div>';
+}
+function viewAsthma(p){
+  const s=ST[S.stu],role=S.prole,hit=!!p.att&&typeof p.att==='object';
+  const pill=hit?['crit','نوبة اليوم']:p.att===false?['ok','لا نوبة اليوم']:['mute','لم تُسجَّل بعد'];
+  const hist=(hit?[{d:'اليوم '+p.att.t}]:[]).concat(p.hist);
+  const stepsCard='<div class="card"><h3>ما الذي تفعله عند نوبة ربو</h3><ol class="steps">'+p.steps.map(t=>'<li><span>'+esc(t)+'</span></li>').join('')+'</ol></div>';
+  let body='';
+  if(role==='nur'){
+    body='<div class="card"><h3>هل تعرّض الطالب لنوبة ربو اليوم؟</h3>'+(hit?
+      '<div class="alert" style="margin-top:8px"><div class="h">أُرسلت رسالة فورية إلى ولي الأمر الساعة '+p.att.t+'</div><div>'+esc(p.msgs.length?p.msgs[0].text:'')+'</div><button class="btn small" data-act="asthfix">تصحيح التسجيل (سُجّلت بالخطأ)</button></div>':
+      '<div style="margin-top:8px">'+yn('asth','att',p.att===false?false:undefined,'نعم','لا')+'</div><p class="lead" style="margin-top:8px">عند الضغط على «نعم» تصل رسالة مباشرة إلى ولي الأمر.</p>')+'</div>'+stepsCard;
+  }else if(role==='par'){
+    body='<div class="card"><h3>رسائل عاجلة من المدرسة</h3>'+(p.msgs.length?'<ul class="log">'+p.msgs.map((m,i)=>'<li class="'+(i===0&&hit?'crit':'')+'"><b class="mono">'+m.t+'</b> · '+esc(m.text)+'</li>').join('')+'</ul>':'<p class="lead">لا توجد رسائل اليوم.</p>')+'</div>'+
+    '<div class="card"><h3>التزام اليوم</h3>'+p.checks.map((c,i)=>'<label class="chk"><input type="checkbox" data-act="chk" data-i="'+i+'"'+(c.d?' checked':'')+'><span>'+c.t+'</span></label>').join('')+'</div>'+
+    '<div class="card"><h3>ملاحظة للمرشد الصحي</h3><textarea id="pl-note" data-act="note" placeholder="مثال: نام متأخراً أمس، وتناول فطوراً خفيفاً">'+esc(p.note)+'</textarea><p class="lead" style="margin-top:6px">تظهر الملاحظة للمرشد في عرضه خلال اليوم الدراسي.</p></div>';
+  }else{
+    body=stepsCard;
+  }
+  return '<div class="stack">'+seg('prole',role,[['doc','الطبيب'],['par','الوالدان'],['nur','المرشد']])+
+  '<div class="card"><div class="row"><div><h3 style="margin:0">'+p.title+' · '+esc(s.first)+'</h3><p class="lead">نوبات الربو في المدرسة</p></div><span class="pill '+pill[0]+'">'+pill[1]+'</span></div>'+
+  '<p class="lead" style="margin-top:8px">آخر تعديل للخطة: '+p.edited+'</p></div>'+body+cnCard(p,role)+
+  '<div class="card"><h3>سجل نوبات الربو</h3>'+(hist.length?'<ul class="list">'+hist.map(h=>'<li><div class="main">'+h.d+'</div></li>').join('')+'</ul>':'<p class="lead">لا نوبات مسجلة.</p>')+'</div></div>';
+}
+function viewAllergy(p){
+  const s=ST[S.stu],role=S.prole;
+  const stepsCard='<div class="card"><h3>ما الذي تفعله عند تفاعل تحسسي</h3><ol class="steps">'+p.steps.map(t=>'<li><span>'+esc(t)+'</span></li>').join('')+'</ol></div>';
+  let body=stepsCard;
+  if(role==='par')body='<div class="card"><h3>التزام اليوم</h3>'+p.checks.map((c,i)=>'<label class="chk"><input type="checkbox" data-act="chk" data-i="'+i+'"'+(c.d?' checked':'')+'><span>'+c.t+'</span></label>').join('')+'</div>'+
+    '<div class="card"><h3>ملاحظة للمرشد الصحي</h3><textarea id="pl-note" data-act="note" placeholder="مثال: نام متأخراً أمس، وتناول فطوراً خفيفاً">'+esc(p.note)+'</textarea><p class="lead" style="margin-top:6px">تظهر الملاحظة للمرشد في عرضه خلال اليوم الدراسي.</p></div>'+stepsCard;
+  return '<div class="stack">'+seg('prole',role,[['doc','الطبيب'],['par','الوالدان'],['nur','المرشد']])+
+  '<div class="card"><div class="row"><div><h3 style="margin:0">'+p.title+' · '+esc(s.first)+'</h3><p class="lead">حساسية الفول السوداني</p></div><span class="pill crit">حساسية مفرطة</span></div>'+
+  '<p class="lead" style="margin-top:8px">آخر تعديل للخطة: '+p.edited+'</p></div>'+body+cnCard(p,role)+'</div>';
+}
+function viewPln(){
+  const p=S.plans[S.stu];if(p.kind==='asthma')return viewAsthma(p);if(p.kind==='allergy')return viewAllergy(p);
+  const s=ST[S.stu],last=p.readings[p.readings.length-1],ls=stat(p,last.v),role=S.prole;
+  let body='';
+  if(role==='doc'){
+    body='<div class="card"><h3>نطاق القراءة المسموح</h3><p class="lead">يحدده الطبيب المعالج، ويراه الوالدان والمرشد فوراً.</p>'+
+    '<div class="row" style="margin-top:10px"><label class="f">الحد الأدنى ('+p.unit+')<input type="number" id="pl-low" value="'+p.low+'" inputmode="numeric"></label><label class="f">الحد الأعلى ('+p.unit+')<input type="number" id="pl-high" value="'+p.high+'" inputmode="numeric"></label></div>'+
+    '<button class="btn primary block" style="margin-top:10px" data-act="savePlan">حفظ الخطة</button></div>'+
+    '<div class="card"><h3>إجراءات المرشد عند الخروج عن النطاق</h3><ul class="list"><li><div class="main"><div class="t">أقل من النطاق</div><div class="d">'+p.steps.low+'</div></div></li><li><div class="main"><div class="t">أعلى من النطاق</div><div class="d">'+p.steps.high+'</div></div></li></ul></div>';
+  }else if(role==='par'){
+    body='<div class="card"><h3>التزام اليوم</h3>'+p.checks.map((c,i)=>'<label class="chk"><input type="checkbox" data-act="chk" data-i="'+i+'"'+(c.d?' checked':'')+'><span>'+c.t+'</span></label>').join('')+'</div>'+
+    '<div class="card"><h3>ملاحظة للمرشد الصحي</h3><textarea id="pl-note" data-act="note" placeholder="مثال: نام متأخراً أمس، وتناول فطوراً خفيفاً">'+esc(p.note)+'</textarea><p class="lead" style="margin-top:6px">تظهر الملاحظة للمرشد في عرضه خلال اليوم الدراسي.</p></div>';
+  }else{
+    body='<div class="card"><h3>تسجيل قراءة جديدة</h3><div class="row" style="align-items:flex-end"><label class="f">'+p.metric+' ('+p.unit+')<input type="number" id="pl-val" inputmode="numeric" placeholder="مثال: '+n(Math.round((p.low+p.high)/2))+'"></label><button class="btn primary" data-act="addRead">تسجيل</button></div></div>'+
+    (S.can.last[S.stu]?'<div class="card"><h3>آخر مشتريات المقصف</h3><p style="margin:0">'+S.can.last[S.stu].t+' · <b class="mono">'+n(S.can.last[S.stu].c)+'</b> جم كربوهيدرات. راجع القراءة التالية في وقتها.</p></div>':'')+
+    (p.note?'<div class="card"><h3>ملاحظة من ولي الأمر</h3><p data-keep style="margin:0">'+esc(p.note)+'</p></div>':'')+
+    '<div class="card"><h3>قراءات اليوم</h3><ul class="list">'+p.readings.slice().reverse().map(r=>{const q=stat(p,r.v);return '<li><div class="main"><span class="mono">'+r.t+'</span> · <b class="mono">'+n(r.v)+'</b> '+p.unit+'</div><span class="pill '+q.c+'">'+q.l+'</span></li>'}).join('')+'</ul></div>';
+  }
+  return '<div class="stack">'+seg('prole',role,[['doc','الطبيب'],['par','الوالدان'],['nur','المرشد']])+
+  '<div class="card"><div class="row"><div><h3 style="margin:0">'+p.title+' · '+esc(s.first)+'</h3><p class="lead">النطاق '+n(p.low)+'–'+n(p.high)+' '+p.unit+'</p></div><span class="pill '+ls.c+'">'+ls.l+'</span></div>'+chart(p)+
+  '<p class="lead">آخر تعديل للخطة: '+p.edited+'</p></div>'+
+  (ls.k!=='ok'?'<div class="alert"><div class="h">القراءة الأخيرة '+n(last.v)+' '+p.unit+' خارج النطاق</div><div>'+p.steps[ls.k]+'</div><div class="lead">أُشعر الوالدان والطبيب (محاكاة).</div></div>':'')+
+  body+doseCard(p,role==='nur')+cnCard(p,role)+'</div>';
+}
+/* ---------- منحنيات النمو السعودية (ذكور/إناث، من ٥ إلى ١٩ سنة) ----------
+   القيم مقروءة تقريباً من صور المنحنيات المعتمدة، وهي للنموذج التجريبي فقط.
+   H الطول بالسم والوزن W بالكجم: المئينات ٣،٥،١٠،٢٥،٥٠،٧٥،٩٠،٩٥،٩٧. B مؤشر الكتلة: المئينات ٥٠،٧٥،٨٥،٩٠،٩٥،٩٧. */
+const GC={"f":{"H":[[97.1,98.4,100.5,103.9,107.5,111.3,114.6,116.7,118.0],[102.4,103.8,105.9,109.3,113.2,117.3,120.7,122.8,124.2],[107.3,108.6,110.9,114.4,118.3,122.4,126.0,128.2,129.5],[112.9,114.4,116.6,120.4,124.5,128.6,132.4,134.7,136.0],[116.9,118.4,120.6,124.5,128.7,132.9,136.8,139.2,140.7],[121.4,123.0,125.4,129.3,133.8,138.3,142.4,144.7,146.2],[126.4,128.0,130.5,134.5,139.2,143.8,148.1,150.6,152.3],[132.6,133.7,137.7,141.8,146.5,151.0,155.3,157.9,159.6],[138.8,140.4,142.8,146.6,151.1,155.6,159.6,162.1,163.6],[141.9,143.5,145.6,149.4,153.5,157.7,161.6,163.9,165.4],[143.3,144.7,146.8,150.5,154.5,158.7,162.4,164.6,166.1],[144.3,145.6,147.7,151.3,155.3,159.4,163.0,165.4,166.8],[144.4,145.7,147.9,151.6,155.7,159.9,163.8,166.1,167.7],[144.5,145.8,148.0,151.8,156.1,160.5,164.5,166.9,168.6],[144.5,145.8,148.0,151.8,156.1,160.5,164.5,166.9,168.6]],"W":[[12.2,12.7,13.5,14.9,16.6,18.6,20.5,21.8,22.7],[13.1,13.6,14.6,16.2,18.3,20.6,23.0,24.5,25.5],[14.7,15.4,16.5,18.6,21.2,24.2,27.2,29.2,30.5],[16.0,16.8,18.2,20.7,23.9,27.5,31.1,33.5,35.4],[17.7,18.7,20.3,23.3,27.0,31.6,36.2,39.3,41.4],[19.7,20.8,22.8,26.2,30.6,36.0,41.6,45.3,48.0],[22.1,23.4,25.6,29.6,34.7,40.8,47.2,51.5,54.6],[24.5,26.0,28.4,32.9,38.8,45.7,52.9,57.7,61.3],[27.5,29.0,31.8,36.7,43.3,50.7,58.7,64.2,67.9],[30.2,31.8,34.7,39.9,46.8,54.7,63.1,68.7,72.6],[32.9,34.6,37.6,43.2,50.4,58.7,67.5,73.3,77.3],[34.2,36.1,39.1,44.8,52.2,60.8,69.6,75.6,79.7],[35.6,37.6,40.6,46.5,54.0,62.8,71.8,77.8,82.0],[36.2,38.0,41.3,47.3,54.7,63.7,72.7,78.8,83.0],[36.5,38.6,41.7,47.7,55.3,64.3,73.5,79.5,83.8]],"B":[[14.5,15.8,16.7,17.3,18.3,19.0],[14.5,15.9,16.8,17.5,18.5,19.3],[14.8,16.3,17.3,18.1,19.4,20.3],[15.2,16.9,18.0,18.9,20.4,21.4],[15.7,17.7,19.0,20.0,21.7,23.0],[16.4,18.6,20.1,21.2,23.2,24.8],[17.3,19.7,21.4,22.7,25.0,26.7],[18.2,20.9,22.7,24.1,26.5,28.4],[19.2,22.1,24.0,25.5,28.0,30.0],[20.2,23.2,25.2,26.7,29.4,31.4],[20.9,24.0,26.0,27.7,30.4,32.5],[21.5,24.7,26.8,28.4,31.2,33.4],[21.7,25.0,27.2,28.8,31.7,33.8],[22.0,25.4,27.6,29.2,32.1,34.3],[22.0,25.4,27.6,29.2,32.1,34.3]]},"m":{"H":[[97.5,98.9,101.0,104.5,108.3,112.2,115.7,117.7,119.2],[102.6,104.0,106.2,109.7,113.7,117.7,121.3,123.4,124.9],[107.6,109.0,111.2,114.9,118.9,123.0,126.6,128.7,130.2],[114.2,115.7,117.7,121.5,125.4,129.6,133.4,135.6,136.9],[118.1,119.6,121.8,125.4,129.5,133.8,137.6,140.0,141.5],[122.3,123.7,125.9,129.7,134.1,138.6,142.7,145.3,147.1],[126.1,127.5,129.8,133.8,138.4,143.2,147.7,150.5,152.4],[130.4,132.0,134.5,138.7,143.6,148.7,153.5,156.6,158.5],[135.4,137.1,139.8,144.5,149.7,155.1,160.1,163.2,165.2],[141.2,143.2,146.1,151.1,156.6,162.1,167.0,170.0,172.0],[146.0,148.1,151.2,156.5,161.8,167.2,171.8,174.6,176.3],[148.8,150.7,153.9,158.9,164.1,169.2,173.6,176.1,177.8],[151.5,153.4,156.5,161.4,166.4,171.2,175.3,177.7,179.2],[154.2,156.1,159.1,163.9,168.7,173.2,177.0,179.2,180.7],[154.2,156.1,159.1,163.9,168.7,173.2,177.0,179.2,180.7]],"W":[[12.7,13.2,13.9,15.3,17.0,18.9,20.8,22.0,22.8],[13.8,14.3,15.2,16.8,18.8,21.1,23.5,25.0,26.0],[14.9,15.6,16.6,18.6,21.0,23.7,26.5,28.3,29.5],[16.2,17.0,18.2,20.6,23.5,26.8,30.2,32.5,34.0],[17.9,18.8,20.3,23.0,26.5,30.7,35.1,38.0,40.0],[19.2,20.3,22.1,25.5,29.8,34.8,40.1,43.6,46.0],[20.8,22.1,24.2,28.2,33.5,39.6,46.1,50.5,53.5],[23.0,24.4,26.9,31.5,37.5,44.7,52.2,57.4,61.0],[25.6,27.2,30.0,35.2,42.0,50.2,58.9,64.8,69.0],[28.8,30.6,33.7,39.4,47.0,56.0,65.5,72.0,76.5],[32.0,34.0,37.3,43.7,52.0,61.6,71.8,78.7,83.5],[35.2,37.3,40.8,47.4,56.0,66.3,77.1,84.4,89.5],[37.5,39.7,43.4,50.4,59.5,70.2,81.6,89.2,94.5],[39.5,41.8,45.7,53.0,62.5,73.6,85.2,93.1,98.5],[41.5,43.9,47.9,55.4,65.2,76.7,88.8,96.9,102.5]],"B":[[14.6,15.9,16.7,17.3,18.1,18.8],[14.6,15.9,16.7,17.3,18.3,19.0],[14.7,16.2,17.1,17.8,18.9,19.7],[15.1,16.7,17.7,18.5,19.8,20.7],[15.6,17.5,18.7,19.6,21.2,22.4],[16.3,18.4,19.8,20.9,22.7,24.1],[17.1,19.4,21.1,22.4,24.6,26.3],[17.6,20.2,22.0,23.4,25.9,27.9],[18.2,21.0,22.9,24.4,27.2,29.3],[18.9,21.8,23.8,25.4,28.3,30.6],[19.6,22.6,24.7,26.4,29.5,32.0],[20.2,23.3,25.5,27.3,30.5,33.1],[20.7,23.9,26.2,28.0,31.4,34.1],[21.2,24.5,26.8,28.7,32.2,35.0],[21.6,25.0,27.3,29.3,32.8,35.7]]}};
+const PH=[3,5,10,25,50,75,90,95,97],PB=[50,75,85,90,95,97];
+const GINFO={sara:'f',yusuf:'m',omar:'m'};
+/* قياسات الطلاب الآخرين: [الجنس، العمر، الطول سم، الوزن كجم] */
+const GR={'203201':['m',9.5,137,38],'203215':['f',8.5,123,21],'203228':['m',12.5,150,62],'203233':['f',8.5,127,25],'203246':['m',9.5,131,24],'203259':['f',10.5,118,22],'203262':['f',11.5,143,52],'203270':['m',10.5,138,29],
+ '305118':['m',9.5,134,33],'305124':['f',8.5,125,33],'412077':['m',10.5,137,31],'412091':['f',12.5,150,40],'518340':['m',9.5,133,29],'627105':['f',10.5,140,33]};
+/* ملخص المدارس (أمثلة): عدد الطلاب المقيسين، زيادة الوزن (المئين ٨٥ إلى ٩٥)، السمنة (المئين ٩٥ فأعلى) */
+const SCHG={am:{n:115,ov:12,ob:8},nr:{n:240,ov:38,ob:31},fj:{n:198,ov:33,ob:30},rw:{n:320,ov:41,ob:22},mn:{n:176,ov:24,ob:9}};
+const OB_LIM=10,OB_WATCH=8;
+const LV={ok:['ok','ضمن الطبيعي'],watch:['warn','يحتاج متابعة'],visit:['crit','يحتاج زيارة طبية']};
+const LVR={ok:0,watch:1,visit:2};
+const bmi=(w,h)=>w/((h/100)*(h/100));
+const dec=v=>n(v.toFixed(1)).replace('.','٫');
+const gP=(sx,m,a)=>{const T=GC[sx][m],x=Math.min(19,Math.max(5,a))-5,i=Math.min(13,Math.floor(x)),t=x-i;return T[i].map((v,j)=>v+(T[i+1][j]-v)*t)};
+function gPos(sx,m,a,v){
+  const P=gP(sx,m,a),L=m==='B'?PB:PH;
+  if(v<P[0])return {lo:null,hi:L[0]};
+  for(let j=0;j<P.length-1;j++)if(v<P[j+1])return {lo:L[j],hi:L[j+1]};
+  return {lo:L[L.length-1],hi:null};
+}
+const gTxt=p=>p.lo===null?'أقل من المئين '+n(p.hi):p.hi===null?'أعلى من المئين '+n(p.lo):'بين المئين '+n(p.lo)+' و'+n(p.hi);
+function gAssess(sx,pts){
+  const c=pts[pts.length-1],p=pts.length>1?pts[pts.length-2]:null,b=bmi(c.w,c.h);
+  const r={H:gPos(sx,'H',c.a,c.h),W:gPos(sx,'W',c.a,c.w),B:gPos(sx,'B',c.a,b)},st={H:'ok',W:'ok',B:'ok'},fl=[];
+  if(r.H.lo===null){st.H='visit';fl.push({s:'قصر الطول',t:'الطول أقل من المئين ٣ لعمره',lv:'visit'})}
+  else if(r.H.hi===null){st.H='watch';fl.push({s:'طول مرتفع',t:'الطول أعلى من المئين ٩٧ لعمره',lv:'watch'})}
+  if(r.W.lo===null){st.W='visit';fl.push({s:'نحافة',t:'الوزن أقل من المئين ٣ لعمره (نحافة)',lv:'visit'})}
+  else if(r.W.hi===null){st.W='visit';fl.push({s:'وزن مرتفع',t:'الوزن أعلى من المئين ٩٧ لعمره',lv:'visit'})}
+  if((r.B.lo||0)>=95){st.B='visit';fl.push({s:'سمنة',t:'مؤشر كتلة الجسم في نطاق السمنة (المئين ٩٥ فأعلى)',lv:'visit'})}
+  else if((r.B.lo||0)>=85){st.B='watch';fl.push({s:'زيادة وزن',t:'مؤشر كتلة الجسم أعلى من الطبيعي (زيادة وزن)',lv:'watch'})}
+  if(p&&c.a-p.a>0.5&&c.a<13&&(c.h-p.h)/(c.a-p.a)<4)fl.push({s:'بطء الطول',t:'زيادة الطول خلال السنة الأخيرة أقل من المتوقع',lv:'watch'});
+  const lv=fl.reduce((m,f)=>LVR[f.lv]>LVR[m]?f.lv:m,'ok');
+  return {lv,st,r,b,fl,c};
+}
+function gSnap(x){
+  if(x.key&&S.gro.d[x.key]){const g=S.gro.d[x.key];return {sx:GINFO[x.key],pts:g.h.map((h,i)=>({a:g.a[i],h,w:g.w[i]}))}}
+  const r=GR[x.id];return r?{sx:r[0],pts:[{a:r[1],h:r[2],w:r[3]}]}:null;
+}
+function schStat(id){
+  const b=SCHG[id];let N=b.n,ov=b.ov,ob=b.ob;
+  if(id==='am')['sara','yusuf','omar'].forEach(k=>{const sn=gSnap({key:k}),as=gAssess(sn.sx,sn.pts);N++;if((as.r.B.lo||0)>=95)ob++;else if((as.r.B.lo||0)>=85)ov++});
+  const po=ob/N*100,pv=ov/N*100;
+  return {id,n:N,ov,ob,po,pv,lv:po>=OB_LIM?'visit':po>=OB_WATCH?'watch':'ok'};
+}
+const SLV={ok:['ok','ضمن النطاق الطبيعي'],watch:['warn','قريبة من الحد'],visit:['crit','أعلى من الحد الطبيعي']};
+const pc=v=>fmt(v.toFixed(1))+'٪';
+function gChart(sx,m,pts){
+  const W=320,H=215,L=34,R=22,T=12,B=26,T0=GC[sx][m],PL=m==='B'?PB:PH,nP=PL.length,A=[...Array(15).keys()];
+  const vals=pts.map(p=>p.v),vmin=Math.min(...T0.map(r=>r[0]),...vals),vmax=Math.max(...T0.map(r=>r[nP-1]),...vals),rg=vmax-vmin,step=rg>60?20:rg>25?10:5;
+  const lo=Math.floor(vmin/step)*step,hi=Math.ceil(vmax/step)*step;
+  const x=a=>L+(Math.min(19,Math.max(5,a))-5)/14*(W-L-R),y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  const col=i=>x(5+i).toFixed(1);
+  const poly=(f1,f2,c)=>'<polygon class="'+c+'" points="'+A.map(i=>col(i)+','+y(f2(i)).toFixed(1)).concat(A.slice().reverse().map(i=>col(i)+','+y(f1(i)).toFixed(1))).join(' ')+'"/>';
+  let o='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="منحنى النمو مقارنة بالمئينات">';
+  const tk=[];for(let v=lo;v<=hi+1e-9;v+=step)tk.push(v);
+  o+=tk.map(v=>'<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(v).toFixed(1)+'" y2="'+y(v).toFixed(1)+'" stroke="var(--line)"/><text x="'+(L-5)+'" y="'+(y(v)+3).toFixed(1)+'" text-anchor="end">'+n(v)+'</text>').join('');
+  o+=[5,7,9,11,13,15,17,19].map(a=>'<text x="'+x(a).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle">'+n(a)+'</text>').join('');
+  if(m==='B')o+=poly(()=>lo,i=>T0[i][2],'gb-ok')+poly(i=>T0[i][2],i=>T0[i][4],'gb-w')+poly(i=>T0[i][4],()=>hi,'gb-c');
+  else o+=poly(i=>T0[i][0],i=>T0[i][8],'gb-ok');
+  const cls=j=>m==='B'?(j===0?'gl gl-m':j===2?'gl gl-w':j===4?'gl gl-c':'gl'):(j===4?'gl gl-m':(j===0||j===8)?'gl gl-w':'gl');
+  const lab=m==='B'?[0,2,4]:[0,4,8];
+  for(let j=0;j<nP;j++){
+    o+='<polyline class="'+cls(j)+'" points="'+A.map(i=>col(i)+','+y(T0[i][j]).toFixed(1)).join(' ')+'"/>';
+    if(lab.indexOf(j)>-1)o+='<text x="'+(W-R+3)+'" y="'+(y(T0[14][j])+3).toFixed(1)+'">'+n(PL[j])+'</text>';
+  }
+  if(pts.length>1)o+='<polyline fill="none" stroke="var(--brand)" stroke-width="2" points="'+pts.map(p=>x(p.a).toFixed(1)+','+y(p.v).toFixed(1)).join(' ')+'"/>';
+  o+=pts.map((p,i)=>'<circle cx="'+x(p.a).toFixed(1)+'" cy="'+y(p.v).toFixed(1)+'" r="'+(i===pts.length-1?6:4)+'" fill="var(--brand)" stroke="var(--surface)" stroke-width="2"/>').join('');
+  return o+'</svg>';
+}
+const gVals=(sn,m)=>sn.pts.map(p=>({a:p.a,v:m==='H'?p.h:m==='W'?p.w:bmi(p.w,p.h)}));
+const GCAP={H:'الطول بالسنتيمتر مقابل العمر بالسنوات',W:'الوزن بالكيلوجرام مقابل العمر بالسنوات',B:'مؤشر كتلة الجسم مقابل العمر بالسنوات'};
+const GLEG={H:'المنطقة الخضراء هي النطاق الطبيعي (من المئين ٣ إلى ٩٧)، والنقاط هي قياسات الطالب.',W:'المنطقة الخضراء هي النطاق الطبيعي (من المئين ٣ إلى ٩٧)، والنقاط هي قياسات الطالب.',B:'الأخضر طبيعي (أقل من المئين ٨٥)، والأصفر زيادة وزن (من ٨٥ إلى ٩٥)، والأحمر سمنة (٩٥ فأعلى).'};
+function gChartBlock(sn){
+  const m=S.gro.m;
+  return seg('gm',m,[['H','الطول'],['W','الوزن'],['B','مؤشر الكتلة']])+gChart(sn.sx,m,gVals(sn,m))+'<p class="lead">'+GCAP[m]+'</p><p class="lead">'+GLEG[m]+'</p>';
+}
+function gRows(as){
+  const c=as.c,v={H:n(c.h)+' سم',W:n(c.w)+' كجم',B:dec(as.b)},nm={H:'الطول',W:'الوزن',B:'مؤشر كتلة الجسم'};
+  return '<ul class="list"><li><div class="main"><div class="t">العمر</div></div><b class="mono">'+dec(c.a)+' سنة</b></li>'+
+   ['H','W','B'].map(m=>{const l=LV[as.st[m]];return '<li><div class="main"><div class="t">'+nm[m]+'</div><div class="d">'+gTxt(as.r[m])+'</div></div><div class="gv"><b class="mono">'+v[m]+'</b><span class="pill '+l[0]+'">'+l[1]+'</span></div></li>'}).join('')+'</ul>';
+}
+function gBanner(as){
+  const fl=as.fl.length?'<ul class="list">'+as.fl.map(f=>'<li><div class="main">'+f.t+'</div></li>').join('')+'</ul>':'';
+  if(as.lv==='ok')return '<div class="calm" style="margin-top:10px">الطول والوزن ضمن النطاق الطبيعي لعمره.</div>';
+  if(as.lv==='watch')return '<div class="calm" style="margin-top:10px;background:var(--warn-soft);color:var(--warn)">بعض القياسات تحتاج متابعة. ننصح بمراجعة المرشد الصحي أو الطبيب.</div>'+fl;
+  return '<div class="alert" style="margin-top:10px"><div class="h">يحتاج زيارة طبية</div><div>ننصح بزيارة الطبيب أو المركز الصحي لتقييم النمو. هذه ليست تشخيصاً، وقد تكون الأسباب عادية.</div>'+fl+'</div>';
+}
+function gProfile(x){
+  const sn=gSnap(x);if(!sn)return '';
+  if(x.key&&!S.gro.cons[x.key])return '<div class="card"><h3>النمو والوزن</h3><p class="lead">لا توجد موافقة من ولي الأمر على قياس النمو.</p></div>';
+  const as=gAssess(sn.sx,sn.pts),l=LV[as.lv];
+  return '<div class="card"><div class="row"><h3 style="margin:0">النمو والوزن</h3><span class="pill '+l[0]+'">'+l[1]+'</span></div>'+gBanner(as)+gRows(as)+gChartBlock(sn)+'</div>';
+}
+function schoolCard(){
+  const st=schStat('am'),l=SLV[st.lv],msg={ok:'نسبة السمنة في مدرستك ضمن النطاق الطبيعي. استمر في المتابعة الدورية.',watch:'نسبة السمنة قريبة من الحد الأعلى. يُقترح تعزيز التوعية بالتغذية والنشاط البدني.',visit:'نسبة السمنة أعلى من الحد الطبيعي. يُقترح إبلاغ الطبيب وتنظيم حملة توعية بالتغذية والنشاط البدني.'}[st.lv];
+  return '<div class="card"><div class="row"><div><h3 style="margin:0">وضع مدرستك في الوزن والنمو</h3><p class="lead">'+SCH.am+'</p></div><span class="pill '+l[0]+'">'+l[1]+'</span></div>'+
+   '<ul class="list"><li><span>عدد الطلاب المقيسين</span><b class="mono">'+n(st.n)+'</b></li><li><span>نسبة السمنة (المئين ٩٥ فأعلى)</span><b class="mono">'+pc(st.po)+'</b></li><li><span>نسبة زيادة الوزن (المئين ٨٥ إلى ٩٥)</span><b class="mono">'+pc(st.pv)+'</b></li><li><span>أعلى نسبة سمنة طبيعية</span><b class="mono">'+n(OB_LIM)+'٪</b></li></ul>'+
+   '<div class="'+(st.lv==='ok'?'calm':'alert')+'" style="margin-top:10px">'+msg+'</div></div>';
+}
+function schoolsCard(){
+  const rows=Object.keys(SCHG).map(schStat).sort((a,b)=>b.po-a.po),cnt=rows.filter(r=>r.lv==='visit').length,MX=20;
+  return '<div class="card"><div class="row"><div><h3 style="margin:0">المدارس حسب نسبة السمنة</h3><p class="lead">المئين ٩٥ فأعلى، نسب مجمّعة بلا أسماء طلاب</p></div><span class="pill '+(cnt?'crit':'ok')+'">'+n(cnt)+' أعلى من الحد</span></div>'+
+   '<div class="bars">'+rows.map(r=>'<div class="bar"><div class="lbl"><span>'+SCH[r.id]+(r.id==='am'?' <span class="pill">مدرستك</span>':'')+' <span class="pill '+SLV[r.lv][0]+'">'+SLV[r.lv][1]+'</span></span><b class="mono">'+pc(r.po)+'</b></div><div class="track"><i class="'+(r.lv==='visit'?'hot':'')+'" style="width:'+Math.min(100,Math.round(r.po/MX*100))+'%"></i><b style="inset-inline-start:'+Math.round(OB_LIM/MX*100)+'%"></b></div></div>').join('')+'</div>'+
+   '<p class="lead" style="margin-top:8px">الخط الداكن هو أعلى نسبة سمنة طبيعية.</p>'+
+   (cnt?'<p style="margin:8px 0 0">يُقترح تخصيص حملة توعية بالتغذية والنشاط البدني في المدارس المرتفعة، وزيارة متابعة من الفريق الصحي.</p>':'')+'</div>';
+}
+function viewGro(){
+  const s=ST[S.stu],g=S.gro.d[S.stu],cons=S.gro.cons[S.stu],role=S.gro.role,sn=gSnap({key:S.stu}),as=gAssess(sn.sx,sn.pts),L=g.h.length-1;
+  const measured=g.y[L]==='٢٠٢٦',hasRef=S.ref.some(x=>x.stu===S.stu&&x.gro),l=LV[as.lv];
+  let pre='',post='';
+  if(role==='par'){
+    pre='<div class="card"><h3>موافقة قياس النمو</h3><label class="chk"><input type="checkbox" data-act="gcons"'+(cons?' checked':'')+'><span>أوافق على قياس طول '+esc(s.first)+' ووزنه في المدرسة هذا العام</span></label><p class="lead">يمكنك سحب الموافقة في أي وقت، ولا يُقاس الطالب بدونها.</p></div>';
+  }else if(role==='nur'){
+    pre='<div class="card"><h3>قياس جديد</h3>'+(!cons?'<p class="calm" style="background:var(--warn-soft);color:var(--warn)">لا توجد موافقة من ولي الأمر. لا يمكن تسجيل قياس.</p>':measured?'<p class="calm">تم قياس '+esc(s.first)+' هذا العام.</p>':
+      '<div class="row" style="align-items:flex-end"><label class="f">الطول (سم)<input type="number" id="g-h" inputmode="decimal" placeholder="مثال: '+n(g.h[L]+5)+'"></label><label class="f">الوزن (كجم)<input type="number" id="g-w" inputmode="decimal" placeholder="مثال: '+n(g.w[L]+3)+'"></label></div><button class="btn primary block" style="margin-top:10px" data-act="gadd">حفظ القياس</button>')+'<p class="lead" style="margin-top:6px">تُضاف النتيجة مباشرة إلى المنحنى، ويراها ولي الأمر والطبيب.</p></div>';
+    post=(as.lv!=='ok'?'<div class="card">'+(hasRef?'<span class="pill ok">أُنشئ تحويل للمركز الصحي</span>':'<button class="btn primary block" data-act="gref">إنشاء تحويل للمركز الصحي</button>')+'</div>':'')+schoolCard();
+  }else{
+    post=schoolsCard();
+  }
+  return '<div class="stack">'+seg('grole',role,[['par','ولي الأمر'],['nur','المرشد الصحي'],['doc','الطبيب']])+pre+
+   '<div class="card"><div class="row"><div><h3 style="margin:0">منحنيات النمو · '+esc(s.first)+'</h3><p class="lead">'+(sn.sx==='f'?'منحنيات البنات السعودية':'منحنيات البنين السعوديين')+'</p></div><span class="pill '+l[0]+'">'+l[1]+'</span></div>'+gBanner(as)+gRows(as)+gChartBlock(sn)+'</div>'+post+
+   '<p class="notice">المرجع: منحنيات النمو للأطفال والمراهقين السعوديين (مدينة الملك عبدالعزيز للعلوم والتقنية، ٢٠٠٥، المعتمدة من مجلس الخدمات الصحية). المئينات هنا مقروءة تقريباً من صور المنحنيات للنموذج التجريبي، وحدود المدارس أمثلة. النسخة الفعلية تعتمد جداول القيم الرسمية.</p></div>';
+}
+const IND=[['vac','التطعيم','تغطية التطعيمات','hi'],['vis','النظر','اشتباه ضعف النظر','lo'],['ref','التحويل','إغلاق التحويلات','hi'],['cons','الموافقات','اكتمال الموافقات','hi']];
+function scrPct(){const e=(S.screen.sent.sara?1:0)+(S.screen.sent.yusuf?1:0)+(S.screen.sent.omar?1:0);return Math.round((104+e)/117*100)}
+function viewReg(){
+  const me={n:'مدرسة الأمل الابتدائية',me:true,vac:93,vis:17,ref:Math.round(S.ref.filter(x=>x.step===3).length/S.ref.length*100),cons:scrPct()};
+  const all=[me,{n:'مدرسة النور',vac:97,vis:12,ref:88,cons:96},{n:'مدرسة الفجر',vac:89,vis:21,ref:61,cons:78},{n:'مدرسة الرواد',vac:95,vis:14,ref:79,cons:91},{n:'مدرسة السلام',vac:91,vis:19,ref:70,cons:84},{n:'مدرسة المنار',vac:98,vis:11,ref:93,cons:97}];
+  const k=S.reg.ind,m=IND.find(i=>i[0]===k),hi=m[3]==='hi';
+  const avg=Math.round(all.reduce((a,s)=>a+s[k],0)/all.length);
+  const rows=all.slice().sort((a,b)=>hi?b[k]-a[k]:a[k]-b[k]);
+  const mx=k==='vis'?30:100,bad=s=>hi?s[k]<avg-5:s[k]>avg+5,worst=rows[rows.length-1],nb=rows.filter(bad).length;
+  return '<div class="stack">'+seg('rind',k,IND.map(i=>[i[0],i[1]]))+
+  '<div class="card"><div class="row"><div><h3 style="margin:0">'+m[2]+'</h3><p class="lead">متوسط المنطقة '+n(avg)+'٪ · '+n(all.length)+' مدارس</p></div><span class="pill '+(nb?'warn':'ok')+'">'+n(nb)+' تحتاج متابعة</span></div>'+
+  '<div class="bars">'+rows.map(s=>'<div class="bar"><div class="lbl"><span>'+s.n+(s.me?' <span class="pill">مدرستك</span>':'')+'</span><b class="mono">'+n(s[k])+'٪</b></div><div class="track"><i class="'+(bad(s)?'hot':'')+'" style="width:'+Math.round(s[k]/mx*100)+'%"></i><b style="inset-inline-start:'+Math.round(avg/mx*100)+'%"></b></div></div>').join('')+'</div>'+
+  '<p class="lead" style="margin-top:8px">الخط الداكن هو متوسط المنطقة.</p></div>'+
+  '<div class="card"><h3>ما الذي يقترحه النظام</h3><p style="margin:0">'+(hi?'أقل نسبة':'أعلى نسبة')+' في «'+m[2]+'» عند '+worst.n+' ('+n(worst[k])+'٪). يُقترح تخصيص زيارة متابعة لهذه المدرسة.</p></div>'+
+  '<p class="notice">لوحة المركز الصحي والمنطقة: نسب مجمّعة فقط، بلا أسماء طلاب، ولا تُعرض أي فئة أقل من ١٠ طلاب. أرقام مدرستك في التحويل والموافقات تتغير مباشرة عندما تعمل في تبويب الفحص. بقية الأرقام أمثلة.</p></div>';
+}
+const VIEWS={pass:viewPass,scr:viewScr,alr:viewAlr,can:viewCan,pln:viewPln,gro:viewGro,reg:viewReg};
+
+/* ملخص حالة الطالب: يظهر للطبيب فقط */
+function docSummary(){
+  if(!((S.tab==='pln'&&S.prole==='doc')||(S.tab==='gro'&&S.gro.role==='doc')))return '';
+  const s=ST[S.stu],soon=s.meds.filter(m=>m.exp<=60);
+  return '<div class="card sumdoc"><div class="row"><h3 style="margin:0">'+esc(s.name)+' · الصف '+s.cls+'</h3></div>'+
+   '<div class="row" style="justify-content:flex-start;margin-top:8px">'+s.conds.map(c=>'<span class="pill '+c.c+'">'+esc(c.t)+'</span>').join('')+
+   (soon.length?'<span class="pill warn">شارفت على الانتهاء · '+esc(soon.map(m=>m.n).join('، '))+'</span>':'')+'</div></div>';
+}
+function render(){
+  $('#view').innerHTML=VIEWS[S.tab]();
+  const ds=docSummary();if(ds){const sk=$('#view>.stack');if(sk&&sk.firstElementChild)sk.firstElementChild.insertAdjacentHTML('afterend',ds)}
+  $('#nav').innerHTML=TABS.map(t=>'<button data-act="tab" data-v="'+t[0]+'"'+(S.tab===t[0]?' aria-current="page"':'')+'><svg class="i" viewBox="0 0 24 24" aria-hidden="true">'+ICON[t[2]]+'</svg><span>'+t[1]+'</span></button>').join('');
+  $('#ptitle').textContent=TABS.find(t=>t[0]===S.tab)[1];
+  const ch=$('#chips');ch.hidden=(S.tab==='alr'||S.tab==='reg'||(S.tab==='pass'&&S.pass.role!=='par'));
+  ch.innerHTML=Object.keys(ST).map(k=>{const c=ST[k].conds[0];return '<button class="chip" data-act="stu" data-v="'+k+'" aria-pressed="'+(S.stu===k)+'"><i class="dot '+(c?c.c:'')+'" aria-hidden="true"></i>'+ST[k].first+'</button>'}).join('');
+}
+
+/* ---------- actions ---------- */
+const ACT={
+ lang(d){LANG=d.v;try{localStorage.setItem('hisn-lang',LANG)}catch(e){}render()},
+ tab(d){S.tab=d.v;S.scan=false;S.can.flash=null;render();window.scrollTo(0,0)},
+ stu(d){S.stu=d.v;S.scan=false;S.can.flash=null;S.can.cart=[];S.can.ovr=false;render()},
+ privacy(){$('#sheet').hidden=false},
+ theme(){const r=document.documentElement,cur=r.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'),nx=cur==='dark'?'light':'dark';r.dataset.theme=nx;try{localStorage.setItem('hisn-theme',nx)}catch(e){}},
+ close(){$('#sheet').hidden=true},
+ scan(){S.scan=true;S.log[S.stu].unshift({t:'الآن '+now(),w:'المرشد الصحي (محاكاة)',y:'مسح رمز الطوارئ'});render();window.scrollTo(0,0)},
+ endscan(){S.scan=false;render();window.scrollTo(0,0)},
+ srole(d){S.screen.role=d.v;render()},
+ cons(d){S.screen.consent[S.stu][d.k]=d.v==='1';S.screen.sent[S.stu]=false;render()},
+ ans(d){S.screen.ans[S.stu][d.k]=d.v==='1';S.screen.sent[S.stu]=false;render()},
+ submit(){const a=S.screen.ans[S.stu],st=ST[S.stu];S.screen.sent[S.stu]=true;
+   S.ref=S.ref.filter(x=>!(x.src==='survey'&&x.stu===S.stu&&x.step===0));
+   let c=0;SURV.forEach(r=>{if(a[r.k]===r.v&&!S.ref.some(x=>x.stu===S.stu&&x.issue===r.issue)){S.ref.push({id:++S.seq,stu:S.stu,src:'survey',name:st.name,cls:st.cls,issue:r.issue,step:0,appt:''});c++}});
+   render();toast(c?'وصلت ردود '+st.first+' إلى الفريق الصحي. أُضيفت حالات إلى قائمة التحويل: '+n(c):'وصلت ردود '+st.first+' إلى الفريق الصحي')},
+ remind(d){S.screen.reminded[d.c]=true;render();toast('أُرسل التذكير إلى أولياء أمور الصف '+d.c)},
+ svsel(d,el){S.sv[d.k]=el.value},
+ svadd(){S.sv.reports.push({c:S.sv.cls,s:S.sv.sym,h:0});render();toast('تم تسجيل بلاغ: '+S.sv.sym+' · الصف '+S.sv.cls)},
+ svth(d){S.sv.th=Math.min(8,Math.max(2,S.sv.th+(+d.d)));render()},
+ svsend(d){S.sv.sent[d.key]=now();render();toast('أُرسل التنبيه إلى المركز الصحي')},
+ svreset(){S.sv.reports=REPORTS0();S.sv.th=4;S.sv.sent={};render()},
+ alg(d){const a=S.can.al[S.stu];if(S.can.lock[S.stu].includes(d.k)){toast('هذه الحساسية مرتبطة بحالة طبية ولا تُزال من هنا');return}
+   const i=a.indexOf(d.k);i>-1?a.splice(i,1):a.push(d.k);render()},
+ buy(d){
+   const p=PROD.find(x=>x.id===d.id),al=S.can.al[S.stu],hit=p.al.filter(a=>al.includes(a));
+   if(hit.length){S.can.flash=p.id;const w=hit.map(a=>ALG[a]).join('، ');
+     S.can.log.unshift(now()+' · مُنع بيع «'+p.n+'» لـ '+ST[S.stu].first+' (يحتوي على '+w+'). أُرسل تنبيه لولي الأمر وللمرشد الصحي.');
+     render();toast('ممنوع: المنتج يحتوي على '+w);
+   }else{S.can.flash=null;S.can.cart.push(p.id);render()}},
+ rm(d){S.can.cart.splice(+d.i,1);render()},
+ pay(){const t=S.can.cart.reduce((a,id)=>a+PROD.find(p=>p.id===id).p,0);
+   if(DIA[S.stu]&&cartCarbs()>S.can.limit[S.stu]&&!S.can.ovr){S.can.log.unshift(now()+' · محاولة شراء تتجاوز حد الكربوهيدرات لـ '+ST[S.stu].first+'. أُرسل تنبيه لولي الأمر.');render();toast('تتجاوز حد خطة الطبيب. يلزم موافقة المرشد الصحي');return}
+   if(t>S.can.bal[S.stu]){toast('الرصيد غير كافٍ');return}
+   if(DIA[S.stu])S.can.last[S.stu]={t:now(),c:cartCarbs()};S.can.bal[S.stu]-=t;S.can.cart=[];S.can.ovr=false;S.can.flash=null;render();toast('تمت العملية بنجاح')},
+ prole(d){S.prole=d.v;render()},
+ savePlan(){const p=S.plans[S.stu],lo=parseFloat($('#pl-low').value),hi=parseFloat($('#pl-high').value);
+   if(!(lo>=p.min&&hi<=p.max&&lo<hi)){toast('تأكد أن الحد الأدنى أقل من الأعلى وضمن '+n(p.min)+'–'+n(p.max));return}
+   p.low=lo;p.high=hi;p.edited='د. نورة السالم (مثال) · اليوم '+now();render();toast('حُفظت الخطة وأُشعر الوالدان والمرشد')},
+ addRead(){const p=S.plans[S.stu],v=parseFloat($('#pl-val').value);
+   if(!(v>=20&&v<=600)){toast('أدخل قراءة صحيحة');return}
+   p.readings.push({t:now(),v:v});render();toast('سُجّلت القراءة')},
+ chk(d,el){S.plans[S.stu].checks[+d.i].d=el.checked},
+ refnext(d){const x=S.ref.find(r=>String(r.id)===d.id);if(!x||x.step>=3)return;x.step++;
+   if(x.step===2)x.appt='الأحد ٢٩ نوفمبر · ٠٩:٠٠';
+   render();toast(x.step===1?'أُرسل التحويل إلى المركز الصحي':x.step===2?'حُجز الموعد وأُشعر ولي الأمر':'أُغلقت الحالة')},
+ rind(d){S.reg.ind=d.v;render()},
+ grole(d){S.gro.role=d.v;render()},
+ gm(d){S.gro.m=d.v;render()},
+ gcons(d,el){S.gro.cons[S.stu]=el.checked;render();toast(el.checked?'سُجّلت الموافقة':'سُحبت الموافقة')},
+ gadd(){const g=S.gro.d[S.stu],h=parseFloat($('#g-h').value),w=parseFloat($('#g-w').value),L=g.h.length-1;
+   if(!(h>=90&&h<=190&&w>=10&&w<=150)){toast('أدخل طولاً بين ٩٠ و١٩٠ سم ووزناً بين ١٠ و١٥٠ كجم');return}
+   if(h<g.h[L]-1){toast('الطول أقل من القياس السابق، تأكد من القياس');return}
+   g.y.push('٢٠٢٦');g.a.push(g.a[L]+1);g.h.push(h);g.w.push(w);render();toast('حُفظ القياس وحُدّث المنحنى')},
+ gref(){const s=ST[S.stu],as=gAssess(GINFO[S.stu],gSnap({key:S.stu}).pts);
+   S.ref.push({id:++S.seq,stu:S.stu,gro:true,name:s.name,cls:s.cls,issue:'متابعة نمو ('+as.fl.map(f=>f.s).join('، ')+')',step:0,appt:''});
+   render();toast('أُنشئ التحويل وسيظهر في تبويب الفحص')},
+ lim(d){S.can.limit[S.stu]=Math.min(90,Math.max(15,S.can.limit[S.stu]+(+d.d)));render()},
+ ovr(d,el){S.can.ovr=el.checked;render()},
+ inc(d){S.inc[S.stu].unshift({t:now(),a:ACTS[S.stu][+d.i]});render();toast('سُجّل الإجراء')},
+ copysum(){const t=$('#inc-sum').textContent;
+   try{navigator.clipboard.writeText(t).then(()=>toast('تم نسخ الملخص'),()=>toast('حدد النص وانسخه يدوياً'))}catch(e){toast('حدد النص وانسخه يدوياً')}},
+ closeinc(){S.log[S.stu].unshift({t:'الآن '+now(),w:'المرشد الصحي',y:'أُغلقت الحالة وأُرسل تقرير الحادثة ('+n(S.inc[S.stu].length)+' إجراءات)'});S.inc[S.stu]=[];S.scan=false;render();window.scrollTo(0,0);toast('أُرسل تقرير الحادثة لولي الأمر')},
+ trip(d,el){S.trip.on=el.checked;render()},
+ tripchk(d,el){S.trip.ok[+d.i]=el.checked;render()},
+ prl(d){S.pass.role=d.v;S.pass.open=null;S.scan=false;render();window.scrollTo(0,0)},
+ rfil(d){if(S.pass.role==='doc')S.pass.sch=d.v;else S.pass.cls=d.v;render()},
+ roq(d,el){S.pass.q=el.value;const l=$('#ro-list');if(l){l.innerHTML=rowsHtml();applyLang()}},
+ ropen(d){S.pass.open=d.id;const x=ROSTER.find(r=>r.id===d.id);
+   if(x&&x.key&&S.log[x.key])S.log[x.key].unshift({t:'الآن '+now(),w:S.pass.role==='doc'?'الطبيب':'المرشد الصحي',y:'فتح الملف من القائمة'});
+   render();window.scrollTo(0,0)},
+ rclose(){S.pass.open=null;render();window.scrollTo(0,0)},
+ rplan(d){S.stu=d.k;S.tab='pln';S.prole=S.pass.role==='doc'?'doc':'nur';S.pass.open=null;render();window.scrollTo(0,0)},
+ addDose(){const p=S.plans[S.stu],v=parseFloat($('#pl-dose').value);
+   if(!(v>=0.5&&v<=50)){toast('أدخل عدد وحدات صحيحاً (من ٠٫٥ إلى ٥٠)');return}
+   p.doses.push({t:now(),u:v});render();toast('سُجّلت الجرعة وأُبلغ ولي الأمر')},
+ asth(d){const p=S.plans[S.stu],st=ST[S.stu];
+   if(d.v==='1'){const t=now();p.att={t:t};p.msgs.unshift({t:t,text:'تعرّضت '+st.first+' لنوبة ربو في المدرسة الساعة '+t+'. تابع المرشد الصحي الحالة وفق خطة الطبيب، يرجى التواصل مع المدرسة.'});render();toast('أُرسلت رسالة فورية إلى ولي الأمر')}
+   else{p.att=false;render()}},
+ asthfix(){const p=S.plans[S.stu];p.att=null;p.msgs.unshift({t:now(),text:'تصحيح: سُجّلت نوبة الربو بالخطأ ولم تحدث نوبة.'});render();toast('أُرسل تصحيح إلى ولي الأمر')},
+ cnto(d){S.cnTo=d.v;render()},
+ sendCn(){const p=S.plans[S.stu],t=(S.cnText||'').trim();
+   if(!t){toast('اكتب الملاحظة أولاً');return}
+   (p.cnotes=p.cnotes||[]).push({to:S.cnTo,t:now(),text:t});S.cnText='';render();
+   toast(S.cnTo==='par'?'أُرسلت الملاحظة إلى الوالدين':S.cnTo==='doc'?'أُرسلت الملاحظة إلى الطبيب':'أُرسلت الملاحظة إلى الوالدين والطبيب')}
+};
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');
+  if(!b||b.disabled||/^(INPUT|SELECT|TEXTAREA)$/.test(b.tagName))return;
+  ACT[b.dataset.act]&&ACT[b.dataset.act](b.dataset,b);
+});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.dataset&&t.dataset.act&&/^(INPUT|SELECT)$/.test(t.tagName))ACT[t.dataset.act]&&ACT[t.dataset.act](t.dataset,t);
+});
+document.addEventListener('input',e=>{const d=e.target.dataset;if(!d)return;if(d.act==='note')S.plans[S.stu].note=e.target.value;if(d.act==='roq')ACT.roq(d,e.target);if(d.act==='cntext')S.cnText=e.target.value});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')ACT.close()});
+
+/* ---------- i18n: Arabic is the source; English and Urdu are applied after each render ---------- */
+const LANGS={ar:'rtl',en:'ltr'};
+let LANG='ar';
+try{const sv=localStorage.getItem('hisn-lang');if(sv&&LANGS[sv])LANG=sv}catch(e){}
+const D={};
+[
+ [`أقسام التطبيق`,`App sections`],
+ [`تبديل المظهر`,`Switch theme`],
+ [`اختيار الطالب`,`Choose student`],
+ [`الخصوصية وأمن البيانات`,`Privacy and data security`],
+ [`الرسم البياني للقراءات مع النطاق المسموح`,`Chart of readings with the allowed range`],
+ [`تفعيل وضع الرحلة`,`Turn on trip mode`],
+ [`تقليل`,`Decrease`],
+ [`تقليل الحد`,`Lower the limit`],
+ [`زيادة`,`Increase`],
+ [`زيادة الحد`,`Raise the limit`],
+ [`مثال: نام متأخراً أمس، وتناول فطوراً خفيفاً`,`e.g. Slept late last night and had a light breakfast`],
+ [`منحنى الطول عبر السنوات`,`Height curve over the years`],
+ [`أُبلغ ولي الأمر`,`Parent informed`],
+ [`أُعطي بخاخ الإسعاف`,`Rescue inhaler given`],
+ [`أُعطي مصدر سكر سريع`,`Fast-acting sugar given`],
+ [`أُعطيت حقنة الإبيبن`,`EpiPen injection given`],
+ [`اتُّصل بالإسعاف 997`,`Ambulance called on 997`],
+ [`الأنسولين والإبر وشرائط الفحص`,`Insulin, needles and test strips`],
+ [`إبر الأنسولين`,`Insulin needles`],
+ [`حقيبته الصغيرة الزرقاء، وعلبة احتياطية في عيادة المدرسة`,`His small blue bag, with a spare box in the school clinic`],
+ [`بخاخ الربو`,`Asthma inhaler`],
+ [`تحديث خطة السكري`,`Diabetes plan updated`],
+ [`حقنة إبيبن (نسختان)`,`EpiPen (two copies)`],
+ [`قِيس السكر`,`Blood sugar measured`],
+ [`مراجعة الملف`,`File reviewed`],
+ [`مسح رمز الطوارئ`,`Emergency code scanned`],
+ [`آخر قياس`,`Latest measurement`],
+ [`آخر مشتريات المقصف`,`Latest canteen purchases`],
+ [`أبلغ ولي الأمر وسجّل القراءة والإجراء.`,`Inform the parent and record the reading and the action.`],
+ [`أدخل طولاً بين ٩٠ و١٩٠ سم ووزناً بين ١٠ و١٥٠ كجم`,`Enter a height between 90 and 190 cm and a weight between 10 and 150 kg`],
+ [`أدخل قراءة صحيحة`,`Enter a valid reading`],
+ [`أضف بلاغاً وراقب كيف يتحول التجمع إلى تنبيه.`,`Add a report and watch how a cluster turns into an alert.`],
+ [`أعلى من النطاق`,`Above range`],
+ [`أقل من النطاق`,`Below range`],
+ [`ألبان`,`Dairy`],
+ [`أمس`,`Yesterday`],
+ [`أوافق`,`Agree`],
+ [`لا`,`No`],
+ [`نعم`,`Yes`],
+ [`أين الأدوية والأدوات`,`Where the medicines and tools are`],
+ [`أُرسل التحويل إلى المركز الصحي`,`Referral sent to the health centre`],
+ [`أُرسل التحويل للمركز الصحي`,`Referral sent to the health centre`],
+ [`أُرسل التذكير`,`Reminder sent`],
+ [`أُرسل التنبيه إلى المركز الصحي`,`Alert sent to the health centre`],
+ [`أُرسل تقرير الحادثة لولي الأمر`,`Incident report sent to the parent`],
+ [`أُشعر الوالدان والطبيب (محاكاة).`,`The parents and the doctor were notified (simulation).`],
+ [`أُغلقت الحالة`,`Case closed`],
+ [`أُنشئ التحويل وسيظهر في تبويب الفحص`,`Referral created; it will appear in the Exams tab`],
+ [`أُنشئ تحويل للمركز الصحي`,`Referral to the health centre created`],
+ [`إبلاغ المركز الصحي التابع للمنطقة`,`Notify the district health centre`],
+ [`إتمام الشراء`,`Complete purchase`],
+ [`إجراءات المرشد عند الخروج عن النطاق`,`Counsellor steps when out of range`],
+ [`إذا فقد الوعي أو تعذّر عليه البلع: لا تعطه شيئاً بالفم واتصل بالإسعاف على 997.`,`If he loses consciousness or cannot swallow: give nothing by mouth and call an ambulance on 997.`],
+ [`إرسال التحويل للمركز الصحي`,`Send referral to the health centre`],
+ [`إرسال الموافقات والاستبيان`,`Submit consents and questionnaire`],
+ [`إسهال`,`Diarrhoea`],
+ [`إضافة`,`Add`],
+ [`إعادة ضبط التجربة`,`Reset the demo`],
+ [`إغلاق`,`Close`],
+ [`إغلاق التحويلات`,`Referral closure`],
+ [`إغلاق العرض`,`Close view`],
+ [`إن كان تحت الحد المحدد في الخطة، أعطه مصدر سكر سريع كما كتبه الطبيب ثم أعد القياس.`,`If it is below the limit set in the plan, give a fast-acting sugar source as the doctor prescribed, then measure again.`],
+ [`إنشاء تحويل للمركز الصحي`,`Create referral to the health centre`],
+ [`إنهاء الحالة وإرسال التقرير لولي الأمر`,`Close the case and send the report to the parent`],
+ [`اتصل بالإسعاف على 997 حتى لو تحسنت الأعراض بعد الحقنة.`,`Call an ambulance on 997 even if symptoms improve after the injection.`],
+ [`اجعلها مستلقية مع رفع الساقين، أو جالسة إن كان التنفس صعباً. لا تتركها وحدها.`,`Lay her down with her legs raised, or sitting up if breathing is difficult. Do not leave her alone.`],
+ [`استبيان الفحص الأولي`,`Initial screening questionnaire`],
+ [`استخدم بخاخ الإسعاف كما كتبه الطبيب، أعد القياس بعد ١٥ دقيقة، وأبلغ الوالدين.`,`Use the rescue inhaler as the doctor prescribed, measure again after 15 minutes, and inform the parents.`],
+ [`استخدم حقنة الإبيبن فوراً في الجانب الخارجي من الفخذ عند ظهور أعراض شديدة (صعوبة تنفس، تورم الوجه أو الشفتين، دوخة).`,`Use the EpiPen at once on the outer side of the thigh when severe symptoms appear (difficulty breathing, swelling of the face or lips, dizziness).`],
+ [`اشتباه انحناء في العمود الفقري`,`Suspected spinal curvature`],
+ [`اشتباه ضعف النظر`,`Suspected weak eyesight`],
+ [`اشتباه ضعف نظر`,`Suspected weak eyesight`],
+ [`اشتباه قصر نظر`,`Suspected short-sightedness`],
+ [`اشرب ماءً واتبع تعليمات الطبيب بشأن التصحيح، وأبلغ الوالدين.`,`Drink water, follow the doctor's instructions on correction, and inform the parents.`],
+ [`اضغط عند تنفيذ كل إجراء ليُسجَّل وقته.`,`Tap each action as you carry it out so its time is recorded.`],
+ [`اكتمال الموافقات`,`Consents completed`],
+ [`اكتُشفت الحالة`,`Case identified`],
+ [`الآن`,`Now`],
+ [`الأحد`,`Sunday`],
+ [`الثلاثاء`,`Tuesday`],
+ [`الخميس`,`Thursday`],
+ [`اليوم`,`Today`],
+ [`الأنسولين`,`Insulin`],
+ [`الإسعاف`,`Ambulance`],
+ [`الإنذار`,`Alerts`],
+ [`الاتصال`,`Contact`],
+ [`البخاخ الوقائي أُعطي صباحاً`,`Preventive inhaler given this morning`],
+ [`التحويل`,`Referral`],
+ [`التحويلات من حملة الفحص السابقة`,`Referrals from the previous screening campaign`],
+ [`التزام اليوم`,`Today's adherence`],
+ [`التطعيم`,`Vaccination`],
+ [`التطعيم المدرسي المستحق`,`Due school vaccination`],
+ [`الجرعة المستحقة حسب جدول المركز الصحي`,`The dose due according to the health centre's schedule`],
+ [`الجواز`,`Passport`],
+ [`الجيب الأمامي لحقيبتها، ونسخة ثانية في عيادة المدرسة`,`Front pocket of her bag, with a second copy in the school clinic`],
+ [`الجيب الجانبي للحقيبة`,`Side pocket of the bag`],
+ [`الحالات المسجلة`,`Recorded conditions`],
+ [`الحد لوجبة المقصف`,`Limit per canteen meal`],
+ [`الحدود المستخدمة هنا أمثلة تجريبية. النسخة الفعلية تعتمد منحنيات النمو المرجعية المعتمدة من الجهة الصحية.`,`The limits used here are trial examples. The real version uses the reference growth curves approved by the health authority.`],
+ [`الخط الداكن هو متوسط المنطقة.`,`The dark line is the region average.`],
+ [`الخطة`,`Plan`],
+ [`الرصيد غير كافٍ`,`Insufficient balance`],
+ [`الرمز لا يحمل بيانات صحية`,`The code carries no health data`],
+ [`السلة`,`Cart`],
+ [`السلة الحالية:`,`Current cart:`],
+ [`السلة فارغة. جرّب إضافة منتج فيه مسبب حساسية.`,`The cart is empty. Try adding a product that contains an allergen.`],
+ [`الصحة المدرسية · نموذج تجريبي ببيانات وهمية`,`School health · demo with fictional data`],
+ [`الصف`,`Class`],
+ [`الصفوف`,`Classes`],
+ [`الطبيب`,`Doctor`],
+ [`الطول (سم)`,`Height (cm)`],
+ [`الطول أقل من القياس السابق، تأكد من القياس`,`Height is lower than the previous measurement; check the measurement`],
+ [`العرض`,`Symptom`],
+ [`الفحص`,`Exams`],
+ [`الفحص السريري للأسنان`,`Clinical dental check`],
+ [`الفريق الصحي`,`Health team`],
+ [`القيم الغذائية تقريبية وللتجربة فقط.`,`Nutrition values are approximate and for the demo only.`],
+ [`المجموع`,`Total`],
+ [`المرشد`,`Counsellor`],
+ [`المرشد الصحي`,`Health counsellor`],
+ [`المرشد الصحي (محاكاة)`,`Health counsellor (simulation)`],
+ [`المرشد يرى بروتوكول الطوارئ فقط، والمقصف يرى الحساسيات الغذائية فقط، والمركز الصحي يرى أعداداً مجمّعة.`,`The counsellor sees only the emergency protocol, the canteen sees only food allergies, and the health centre sees aggregated counts.`],
+ [`المرشدة الصحية`,`The health counsellor`],
+ [`المقصف`,`Canteen`],
+ [`المنطقة`,`Region`],
+ [`الموافقات`,`Consents`],
+ [`النظر`,`Vision`],
+ [`النمو`,`Growth`],
+ [`الوالدان`,`Parents`],
+ [`الوزن (كجم)`,`Weight (kg)`],
+ [`بانتظار ردك`,`Awaiting your reply`],
+ [`بخاخ الإسعاف في الحقيبة`,`Rescue inhaler in the bag`],
+ [`بخاخ الربو (إسعاف)`,`Asthma inhaler (rescue)`],
+ [`بروتوكول الطوارئ · عرض المرشد الصحي`,`Emergency protocol · health counsellor view`],
+ [`بسكويت الشوفان بالفول السوداني`,`Oat biscuit with peanuts`],
+ [`بلاغ غياب من ولي أمر (محاكاة)`,`Absence report from a parent (simulation)`],
+ [`بطء الطول`,`slow height gain`],
+ [`ارتفاع مؤشر الكتلة`,`rising BMI`],
+ [`تأكيد الحضور وإغلاق الحالة`,`Confirm attendance and close the case`],
+ [`تتجاوز حد خطة الطبيب. يلزم موافقة المرشد الصحي`,`Exceeds the doctor's plan limit. Health counsellor approval is required.`],
+ [`تحويل إلى المركز الصحي`,`Referral to the health centre`],
+ [`تسجيل`,`Record`],
+ [`تسجيل البلاغ`,`Log the report`],
+ [`تسجيل حجز الموعد`,`Record the booked appointment`],
+ [`تسجيل قراءة جديدة`,`Record a new reading`],
+ [`تسوس يحتاج علاجاً`,`Tooth decay needing treatment`],
+ [`تظهر الملاحظة للمرشد في عرضه خلال اليوم الدراسي.`,`The note appears in the counsellor's view during the school day.`],
+ [`تغطية التطعيمات`,`Vaccination coverage`],
+ [`تفاحة`,`Apple`],
+ [`تم الإرسال`,`Sent`],
+ [`تم الإرسال إلى الفريق الصحي`,`Sent to the health team`],
+ [`تمت العملية بنجاح`,`Purchase completed`],
+ [`تنبيه: تجمع محتمل`,`Alert: possible cluster`],
+ [`تنبيهات التفشي بلا أسماء`,`Outbreak alerts without names`],
+ [`تنبيهات المنع`,`Block alerts`],
+ [`ثلاجة عيادة المدرسة، والجرعة وفق جدول الطبيب`,`School clinic fridge; the dose follows the doctor's schedule`],
+ [`جاهز للتكامل مستقبلاً`,`Ready for future integration`],
+ [`جاهزية الزيارة`,`Visit readiness`],
+ [`جرعة الصباح أُعطيت`,`Morning dose given`],
+ [`جلوتين`,`Gluten`],
+ [`جم كربوهيدرات. راجع القراءة التالية في وقتها.`,`g of carbohydrates. Check the next reading on time.`],
+ [`جهاز قياس السكر`,`Glucose meter`],
+ [`جواز الصحة الطارئ`,`Emergency Health Passport`],
+ [`حد الإنذار`,`Alert threshold`],
+ [`حد الكربوهيدرات لمشتريات المقصف يحدده الطبيب، ويراه ولي الأمر والمرشد.`,`The carbohydrate limit for canteen purchases is set by the doctor and visible to the parent and counsellor.`],
+ [`حذف`,`Remove`],
+ [`حرارة`,`Fever`],
+ [`حساسية الحليب`,`Milk allergy`],
+ [`حساسية مفرطة (فول سوداني)`,`Severe allergy (peanuts)`],
+ [`حضر الطالب وأُغلقت الحالة`,`Student attended and the case was closed`],
+ [`حفظ الخطة`,`Save the plan`],
+ [`حفظ القياس`,`Save measurement`],
+ [`حقنة الإبيبن`,`EpiPen injection`],
+ [`حقيبة الطوارئ جاهزة`,`Emergency bag ready`],
+ [`حقيبته الصغيرة الزرقاء`,`His small blue bag`],
+ [`حليب بنكهة الفراولة`,`Strawberry-flavoured milk`],
+ [`حُجز الموعد وأُشعر ولي الأمر`,`Appointment booked and the parent notified`],
+ [`حُجز موعد`,`Appointment booked`],
+ [`حُفظ القياس`,`Measurement saved`],
+ [`حُفظت الخطة وأُشعر الوالدان والمرشد`,`Plan saved; parents and counsellor notified`],
+ [`خريطة الحساسيات (يحددها ولي الأمر):`,`Allergy map (set by the parent):`],
+ [`راجع الخطة مع ولي الأمر.`,`Review the plan with the parent.`],
+ [`ربو`,`Asthma`],
+ [`رمز QR مفتاح مؤقت يتجدد، ولا يكشف شيئاً إلا لحساب مصرّح له.`,`The QR code is a temporary key that refreshes, and reveals nothing except to an authorised account.`],
+ [`ريان الدوسري`,`Rayan Al-Dosari`],
+ [`عمر الشهراني`,`Omar Al-Shehri`],
+ [`عمر`,`Omar`],
+ [`خطة الحساسية`,`Allergy plan`],
+ [`حساسية الفول السوداني`,`Peanut allergy`],
+ [`حساسية مفرطة`,`Severe allergy`],
+ [`ما الذي تفعله عند تفاعل تحسسي`,`What to do during an allergic reaction`],
+ [`أُعطي مضاد الهيستامين`,`Antihistamine given`],
+ [`مراجعة خطة الحساسية`,`Allergy plan review`],
+ [`حقنة الإبيبن في حقيبته`,`EpiPen in his bag`],
+ [`وجبة اليوم خالية من الفول السوداني`,`Today's meal is peanut-free`],
+ [`مضاد الهيستامين في عيادة المدرسة`,`Antihistamine in the school clinic`],
+ [`د. نورة السالم (مثال) · قبل أسبوعين`,`Dr. Noura Al-Salem (example) · two weeks ago`],
+ [`الجيب الأمامي لحقيبته، ونسخة ثانية في عيادة المدرسة`,`Front pocket of his bag, and a second copy in the school clinic`],
+ [`مضاد الهيستامين`,`Antihistamine`],
+ [`لجين القحطاني`,`Lujain Al-Qahtani`],
+ [`فهد العتيبي`,`Fahad Al-Otaibi`],
+ [`ريم`,`Reem`],
+ [`سارة`,`Sara`],
+ [`سارة العبدالله`,`Sara Al-Abdullah`],
+ [`يوسف`,`Yusuf`],
+ [`يوسف الحربي`,`Yusuf Al-Harbi`],
+ [`المشرف خالد`,`Supervisor Khalid`],
+ [`المشرفة نورة`,`Supervisor Noura`],
+ [`د. نورة السالم`,`Dr. Noura Al-Salem`],
+ [`زيارة الفريق الصحي`,`Health team visit`],
+ [`ساندويتش جبنة`,`Cheese sandwich`],
+ [`ساندويتش زبدة الفول السوداني`,`Peanut butter sandwich`],
+ [`سارية`,`Valid`],
+ [`سجل اطلاع لولي الأمر`,`Access log for the parent`],
+ [`سجل الإجراءات`,`Action log`],
+ [`سجل الاطلاع`,`Access log`],
+ [`سجّل وقت الحقنة وأبلغ ولي الأمر.`,`Record the time of the injection and inform the parent.`],
+ [`سعال`,`Cough`],
+ [`سكري النوع الأول`,`Type 1 diabetes`],
+ [`سُجّل الإجراء`,`Action recorded`],
+ [`سُجّلت القراءة`,`Reading recorded`],
+ [`سُجّلت الموافقة`,`Consent recorded`],
+ [`سُحبت الموافقة`,`Consent withdrawn`],
+ [`شرائط الفحص`,`Test strips`],
+ [`صلاحيات بحسب الدور`,`Role-based permissions`],
+ [`صلاحية الأدوية`,`Medicine expiry`],
+ [`ضمن الحد`,`Within the limit`],
+ [`ضمن المتوقع`,`Within the expected range`],
+ [`ضمن النطاق`,`Within range`],
+ [`طارئ`,`Emergency`],
+ [`طفح جلدي`,`Skin rash`],
+ [`عدد البلاغات المتشابهة في الصف نفسه خلال ٤٨ ساعة. البلاغات الأقدم لا تُحتسب.`,`The number of similar reports in the same class within 48 hours. Older reports are not counted.`],
+ [`عصير برتقال طبيعي`,`Fresh orange juice`],
+ [`عند أعراض هبوط السكر (رجفة، تعرق، شحوب، تشوش): قِس السكر فوراً.`,`At symptoms of low blood sugar (shaking, sweating, pallor, confusion): measure the sugar at once.`],
+ [`عند وصول الفريق تكون الموافقات ونتائج الاستبيان جاهزة، ويُستخدم وقت الزيارة للفحص والتقييم فقط.`,`By the time the team arrives, consents and questionnaire results are ready, so visit time is used only for examination and assessment.`],
+ [`فحص النظر`,`Vision test`],
+ [`فحص انحناء العمود الفقري`,`Spinal curvature check`],
+ [`فحص سريع لحدبة الظهر أثناء الوقوف`,`Quick check for back curvature while standing`],
+ [`فول سوداني`,`Peanuts`],
+ [`في نوبة ربو دون أعراض حساسية: بخاخ الإسعاف كما في خطة الطبيب.`,`In an asthma attack without allergy symptoms: use the rescue inhaler as in the doctor's plan.`],
+ [`قائمة المقصف (شاشة البيع)`,`Canteen menu (point-of-sale screen)`],
+ [`قراءات اليوم`,`Today's readings`],
+ [`قراءة سكر الدم (mg/dL)`,`Blood sugar reading (mg/dL)`],
+ [`تدفق الزفير كنسبة من أفضل قراءة (%)`,`Peak flow as a percentage of the best reading (%)`],
+ [`قريب من الحد`,`Near the limit`],
+ [`قيء`,`Vomiting`],
+ [`قياس جديد`,`New measurement`],
+ [`قياس حدّة البصر بلوحة الفحص`,`Measuring visual acuity with an eye chart`],
+ [`قِس مجدداً، وقدّم مصدر سكر سريع كما كتبه الطبيب، ثم أبلغ الوالدين.`,`Measure again, give a fast-acting sugar source as the doctor prescribed, then inform the parents.`],
+ [`كعكة التمر`,`Date cake`],
+ [`كل فتح لملف الطفل يُسجَّل باسم الجهة والوقت والسبب.`,`Every opening of the child's file is logged with the entity, time and reason.`],
+ [`كيف نحمي بيانات الطفل`,`How we protect the child's data`],
+ [`لا توجد تنبيهات. لم يبلغ عدد البلاغات المتشابهة حد الإنذار.`,`No alerts. The number of similar reports has not reached the alert threshold.`],
+ [`لا توجد محاولات ممنوعة بعد.`,`No blocked attempts yet.`],
+ [`لا توجد موافقة من ولي الأمر. لا يمكن تسجيل قياس.`,`There is no consent from the parent. A measurement cannot be recorded.`],
+ [`لا تُترك حالة دون متابعة: كل تحويل يمر بأربع مراحل حتى يُغلق.`,`No case is left without follow-up: every referral passes through four stages until it is closed.`],
+ [`لا مسببات معروفة اليوم (غبار، عطور قوية)`,`No known triggers today (dust, strong perfumes)`],
+ [`لا يُجرى فحص ولا تُشارك بيانات دون موافقة ولي الأمر.`,`No examination is done and no data is shared without the parent's consent.`],
+ [`لوحة المركز الصحي والمنطقة: نسب مجمّعة فقط، بلا أسماء طلاب، ولا تُعرض أي فئة أقل من ١٠ طلاب. أرقام مدرستك في التحويل والموافقات تتغير مباشرة عندما تعمل في تبويب الفحص. بقية الأرقام أمثلة.`,`Health centre and region dashboard: aggregated percentages only, no student names, and no group of fewer than 10 students is ever shown. Your school's referral and consent figures change live as you work in the Exams tab. The other figures are examples.`],
+ [`مؤشر كتلة الجسم`,`Body mass index (BMI)`],
+ [`مؤشرات تحتاج متابعة`,`Indicators needing follow-up`],
+ [`ما الذي تفعله الآن`,`What to do now`],
+ [`ما الذي يقترحه النظام`,`What the system suggests`],
+ [`ما يظهر للمرشد عند المسح`,`What the counsellor sees when scanning`],
+ [`متابعة`,`Follow-up`],
+ [`محاكاة مسح الرمز كمرشد صحي`,`Simulate scanning the code as a health counsellor`],
+ [`مدرسة الأمل`,`Al-Amal School`],
+ [`مدرسة الأمل الابتدائية`,`Al-Amal Primary School`],
+ [`مثال`,`example`],
+ [`مدرسة الرواد`,`Al-Rowad School`],
+ [`مدرسة السلام`,`Al-Salam School`],
+ [`مدرسة الفجر`,`Al-Fajr School`],
+ [`مدرسة المنار`,`Al-Manar School`],
+ [`مدرسة النور`,`Al-Noor School`],
+ [`مدرستك`,`Your school`],
+ [`حصين، الصحة المدرسية`,`Haseen, school health`],
+ [`مطفأ`,`Off`],
+ [`مغلقة`,`Closed`],
+ [`مفتوحة`,`Open`],
+ [`مفعّل`,`On`],
+ [`مكتمل`,`Complete`],
+ [`ملاحظة للمرشد الصحي`,`Note for the health counsellor`],
+ [`ملاحظة من المرشد الصحي`,`Note from the health counsellor`],
+ [`ملخص تسليم الإسعاف`,`Ambulance handover summary`],
+ [`لم تُسجَّل إجراءات بعد`,`no actions recorded yet`],
+ [`موافقة المرشد الصحي على تجاوز الحد (مثلاً بعد قياس السكر)`,`Health counsellor approves exceeding the limit (for example after measuring blood sugar)`],
+ [`موافقة صريحة ويمكن سحبها`,`Explicit consent that can be withdrawn`],
+ [`موافقة قياس النمو`,`Growth measurement consent`],
+ [`نتائج هذا العام تستحق متابعة بسيطة مع الطبيب. هذه ليست تشخيصاً، وقد تكون الأسباب عادية.`,`This year's results deserve a simple follow-up with the doctor. This is not a diagnosis, and the causes may well be ordinary.`],
+ [`نسخ الملخص`,`Copy the summary`],
+ [`نطاق القراءة المسموح`,`Allowed reading range`],
+ [`نظرة عامة على الأسنان واللثة، دون علاج`,`General look at the teeth and gums, no treatment`],
+ [`هذا النموذج للتجربة فقط. لا يحفظ أي بيانات ولا يتصل بخادم، وكل الأسماء والأرقام أمثلة.`,`This prototype is for trial only. It saves no data, does not connect to a server, and all names and numbers are examples.`],
+ [`هذه الحساسية مرتبطة بحالة طبية ولا تُزال من هنا`,`This allergy is linked to a medical condition and cannot be removed from here`],
+ [`🔒 مرتبطة بحالة طبية، ولا تُزال إلا بتحديث من الطبيب.`,`🔒 Linked to a medical condition; it can only be removed by a doctor's update.`],
+ [`هل أخذ كل تطعيماته السابقة؟`,`Has the child had all previous vaccinations?`],
+ [`هل يرتدي نظارة أو عدسات؟`,`Does the child wear glasses or contact lenses?`],
+ [`هل يشتكي من ألم أو حساسية في الأسنان؟`,`Does the child complain of tooth pain or sensitivity?`],
+ [`هل يشتكي من ألم متكرر في الظهر؟`,`Does the child complain of recurring back pain?`],
+ [`هل يشتكي من صعوبة قراءة السبورة؟`,`Does the child have difficulty reading the board?`],
+ [`وجبة الإفطار مسجلة`,`Breakfast recorded`],
+ [`وضع الرحلة المدرسية`,`School trip mode`],
+ [`وضع السكري`,`Diabetes mode`],
+ [`ولي الأمر`,`Parent`],
+ [`يتجاوز الحد`,`Exceeds the limit`],
+ [`يحتاج متابعة`,`Needs follow-up`],
+ [`يحدده الطبيب المعالج، ويراه الوالدان والمرشد فوراً.`,`Set by the treating doctor and seen immediately by the parents and the counsellor.`],
+ [`يصل المركز الصحي العدد والصف والأعراض دون أسماء الطلاب.`,`The health centre receives only the count, class and symptoms, without student names.`],
+ [`يصل المركز الصحي عدد الحالات والصف والأعراض دون أسماء الطلاب.`,`The health centre receives only the number of cases, class and symptoms, without student names.`],
+ [`يعمل بدون إنترنت: حُفظت بروتوكولات الطوارئ مشفّرة على جهاز المشرف، ويُرسل سجل الاطلاع عند عودة الاتصال.`,`Works offline: emergency protocols are stored encrypted on the supervisor's device, and the access log is sent when the connection returns.`],
+ [`يفتح الرمز ملف الطوارئ لدى المرشد الصحي فقط، ولا يحمل أي بيانات صحية بحد ذاته.`,`The code opens the emergency file for the health counsellor only, and carries no health data itself.`],
+ [`يمكنك تعديل الإجابات قبل الزيارة، وسيصل التحديث تلقائياً.`,`You can edit the answers before the visit, and the update will arrive automatically.`],
+ [`يمكنك سحب الموافقة في أي وقت، ولا يُقاس الطالب بدونها.`,`You can withdraw consent at any time, and the student is not measured without it.`],
+ [`يُبنى على معايير تبادل بيانات صحية قياسية (مثل HL7 FHIR) ليغذّي المنظومات الصحية الوطنية بعد اعتماد الجهات المختصة، وبما يتوافق مع نظام حماية البيانات الشخصية.`,`Built on standard health data exchange formats (such as HL7 FHIR) so it can feed national health systems once the competent authorities approve it, in line with the personal data protection law.`],
+ [`قبل أسبوع`,`A week ago`],
+ [`الكل`,`All`],
+ [`طلاب المدرسة`,`School students`],
+ [`قائمة مرضاي`,`My patients`],
+ [`اضغط على أي طالب لعرض بياناته الصحية. ابحث بالاسم أو رقم الطالب إذا ضاع رمز QR.`,`Tap any student to see their health data. Search by name or student number if the QR code is lost.`],
+ [`مرضاك في كل المدارس. ابحث بالاسم أو رقم الطالب إذا لم يتوفر رمز QR.`,`Your patients across all schools. Search by name or student number if the QR code is not available.`],
+ [`بحث`,`Search`],
+ [`ابحث بالاسم أو رقم الطالب`,`Search by name or student number`],
+ [`لا توجد نتائج مطابقة.`,`No matching results.`],
+ [`لا حالات مسجلة`,`No recorded conditions`],
+ [`العودة إلى القائمة`,`Back to the list`],
+ [`الملف الصحي · عرض الطبيب`,`Health file · doctor view`],
+ [`بيانات الطالب`,`Student details`],
+ [`المدرسة`,`School`],
+ [`رقم الطالب`,`Student number`],
+ [`لا يوجد بروتوكول طوارئ خاص لهذا الطالب.`,`There is no special emergency protocol for this student.`],
+ [`عرض الخطة العلاجية`,`View treatment plan`],
+ [`فتح الملف من القائمة`,`File opened from the list`],
+ [`عيادة المدرسة`,`School clinic`],
+ [`دواء الطوارئ للصرع (حسب وصفة الطبيب)`,`Emergency epilepsy medicine (as prescribed)`],
+ [`صرع`,`Epilepsy`],
+ [`حساسية مفرطة (مكسرات)`,`Severe allergy (tree nuts)`],
+ [`حساسية مفرطة (بيض)`,`Severe allergy (eggs)`],
+ [`مها الشمري`,`Maha Al-Shammari`],
+ [`عبدالعزيز الغامدي`,`Abdulaziz Al-Ghamdi`],
+ [`جود الشهري`,`Joud Al-Shehri`],
+ [`ريم الزهراني`,`Reem Al-Zahrani`],
+ [`ناصر المطيري`,`Nasser Al-Mutairi`],
+ [`خالد السبيعي`,`Khalid Al-Subaie`],
+ [`هيا الحربي`,`Haya Al-Harbi`],
+ [`سلمان القرني`,`Salman Al-Qarni`],
+ [`تالا العمري`,`Tala Al-Omari`],
+ [`أنس الدوسري`,`Anas Al-Dosari`],
+ [`غدير الجهني`,`Ghadir Al-Juhani`],
+ [`أجلس الطالب أو أضجعه مع رفع الساقين، ولا تتركه وحده.`,`Sit the student up or lay them down with the legs raised, and do not leave them alone.`],
+ [`عند ضيق النفس أو الصفير أو السعال المستمر: أعطِ بخاخ الإسعاف كما كتبه الطبيب وأجلس الطالب بوضع مريح.`,`At shortness of breath, wheezing or a persistent cough: give the rescue inhaler as the doctor prescribed and seat the student comfortably.`],
+ [`أعد التقييم بعد ١٥ دقيقة، وإن لم تتحسن الأعراض أو ازداد الضيق اتصل بالإسعاف على 997.`,`Reassess after 15 minutes, and if symptoms do not improve or the tightness increases, call an ambulance on 997.`],
+ [`أبلغ ولي الأمر وسجّل النوبة.`,`Inform the parent and record the attack.`],
+ [`أبعد الأشياء الخطرة عن الطالب وضعه على جنبه، ولا تضع شيئاً في فمه.`,`Move dangerous objects away from the student and place them on their side. Do not put anything in their mouth.`],
+ [`سجّل وقت بدء النوبة ومدتها.`,`Record when the seizure started and how long it lasted.`],
+ [`اتصل بالإسعاف على 997 إذا استمرت النوبة أكثر من ٥ دقائق أو تكررت أو تعذّر التنفس.`,`Call an ambulance on 997 if the seizure lasts more than 5 minutes, repeats, or breathing is difficult.`],
+ [`أبلغ ولي الأمر بعد انتهاء النوبة.`,`Inform the parent after the seizure ends.`],
+ [`شارفت على الانتهاء`,`Nearly expired`],
+ [`عدد كافٍ`,`Enough supply`],
+ [`من الاستبيان`,`From questionnaire`],
+ [`التحويلات (الفحص والاستبيانات)`,`Referrals (screening and questionnaires)`],
+ [`صعوبة قراءة السبورة`,`Difficulty reading the board`],
+ [`ألم متكرر في الظهر`,`Recurring back pain`],
+ [`ألم أو حساسية في الأسنان`,`Tooth pain or sensitivity`],
+ [`تطعيمات سابقة غير مكتملة`,`Incomplete previous vaccinations`],
+ [`تسجيل جرعة الأنسولين`,`Record insulin dose`],
+ [`سجّل الجرعة التي أخذها الطفل.`,`Record the dose the child took.`],
+ [`عدد وحدات الأنسولين`,`Insulin units`],
+ [`تسجيل الجرعة`,`Record dose`],
+ [`جرعات الأنسولين اليوم`,`Today's insulin doses`],
+ [`وحدة`,`units`],
+ [`لا جرعات مسجلة اليوم.`,`No doses recorded today.`],
+ [`سُجّلت الجرعة وأُبلغ ولي الأمر`,`Dose recorded and the parent informed`],
+ [`أدخل عدد وحدات صحيحاً (من ٠٫٥ إلى ٥٠)`,`Enter a valid number of units (0.5 to 50)`],
+ [`هل تعرّض الطالب لنوبة ربو اليوم؟`,`Did the student have an asthma attack today?`],
+ [`نوبة اليوم`,`Attack today`],
+ [`لا نوبة اليوم`,`No attack today`],
+ [`لم تُسجَّل بعد`,`Not recorded yet`],
+ [`تصحيح التسجيل (سُجّلت بالخطأ)`,`Correct the record (logged by mistake)`],
+ [`عند الضغط على «نعم» تصل رسالة مباشرة إلى ولي الأمر.`,`Pressing “Yes” sends a direct message to the parent immediately.`],
+ [`رسائل عاجلة من المدرسة`,`Urgent messages from the school`],
+ [`لا توجد رسائل اليوم.`,`No messages today.`],
+ [`ما الذي تفعله عند نوبة ربو`,`What to do during an asthma attack`],
+ [`نوبات الربو في المدرسة`,`Asthma attacks at school`],
+ [`سجل نوبات الربو`,`Asthma attack history`],
+ [`لا نوبات مسجلة.`,`No attacks recorded.`],
+ [`تصحيح: سُجّلت نوبة الربو بالخطأ ولم تحدث نوبة.`,`Correction: the asthma attack was logged by mistake; no attack occurred.`],
+ [`أُرسلت رسالة فورية إلى ولي الأمر`,`An instant message was sent to the parent`],
+ [`أُرسل تصحيح إلى ولي الأمر`,`A correction was sent to the parent`],
+ [`كلاهما`,`Both`],
+ [`كتابة ملاحظة`,`Write a note`],
+ [`تصل الملاحظة إلى من تختاره فور إرسالها.`,`The note reaches whoever you choose as soon as you send it.`],
+ [`اكتب ملاحظتك هنا`,`Write your note here`],
+ [`إرسال الملاحظة`,`Send note`],
+ [`ملاحظات المرشد الصحي`,`Health counsellor notes`],
+ [`لا توجد ملاحظات بعد.`,`No notes yet.`],
+ [`اكتب الملاحظة أولاً`,`Write the note first`],
+ [`إلى الوالدين`,`To the parents`],
+ [`إلى الطبيب`,`To the doctor`],
+ [`إلى الوالدين والطبيب`,`To the parents and the doctor`],
+ [`أُرسلت الملاحظة إلى الوالدين`,`The note was sent to the parents`],
+ [`أُرسلت الملاحظة إلى الطبيب`,`The note was sent to the doctor`],
+ [`أُرسلت الملاحظة إلى الوالدين والطبيب`,`The note was sent to the parents and the doctor`],
+ [`نموذج تجريبي ببيانات وهمية`,`Demo with fictional data`],
+ [`تُضاف النتيجة مباشرة إلى المنحنى، ويراها ولي الأمر والطبيب.`,`The result is added to the chart immediately, and the parent and doctor can see it.`],
+ [`منحنيات البنات السعودية`,`Saudi girls' growth charts`],
+ [`منحنيات البنين السعوديين`,`Saudi boys' growth charts`],
+ [`ضمن الطبيعي`,`Within normal range`],
+ [`يحتاج متابعة`,`Needs follow-up`],
+ [`يحتاج زيارة طبية`,`Needs a medical visit`],
+ [`الطول والوزن ضمن النطاق الطبيعي لعمره.`,`Height and weight are within the normal range for his or her age.`],
+ [`العمر`,`Age`],
+ [`الطول`,`Height`],
+ [`الوزن`,`Weight`],
+ [`مؤشر الكتلة`,`BMI`],
+ [`مؤشر كتلة الجسم`,`Body mass index (BMI)`],
+ [`الطول بالسنتيمتر مقابل العمر بالسنوات`,`Height in centimetres against age in years`],
+ [`الوزن بالكيلوجرام مقابل العمر بالسنوات`,`Weight in kilograms against age in years`],
+ [`مؤشر كتلة الجسم مقابل العمر بالسنوات`,`BMI against age in years`],
+ [`المنطقة الخضراء هي النطاق الطبيعي (من المئين ٣ إلى ٩٧)، والنقاط هي قياسات الطالب.`,`The green area is the normal range (3rd to 97th percentile); the dots are the student's measurements.`],
+ [`الأخضر طبيعي (أقل من المئين ٨٥)، والأصفر زيادة وزن (من ٨٥ إلى ٩٥)، والأحمر سمنة (٩٥ فأعلى).`,`Green is normal (below the 85th percentile), yellow is overweight (85th to 95th), and red is obesity (95th and above).`],
+ [`وضع مدرستك في الوزن والنمو`,`Your school's weight and growth status`],
+ [`ضمن النطاق الطبيعي`,`Within the normal range`],
+ [`قريبة من الحد`,`Close to the limit`],
+ [`أعلى من الحد الطبيعي`,`Above the normal limit`],
+ [`عدد الطلاب المقيسين`,`Students measured`],
+ [`نسبة السمنة (المئين ٩٥ فأعلى)`,`Obesity rate (95th percentile and above)`],
+ [`نسبة زيادة الوزن (المئين ٨٥ إلى ٩٥)`,`Overweight rate (85th to 95th percentile)`],
+ [`أعلى نسبة سمنة طبيعية`,`Highest normal obesity rate`],
+ [`نسبة السمنة في مدرستك ضمن النطاق الطبيعي. استمر في المتابعة الدورية.`,`Your school's obesity rate is within the normal range. Keep up the routine follow-up.`],
+ [`نسبة السمنة قريبة من الحد الأعلى. يُقترح تعزيز التوعية بالتغذية والنشاط البدني.`,`The obesity rate is close to the upper limit. Stronger awareness of nutrition and physical activity is suggested.`],
+ [`نسبة السمنة أعلى من الحد الطبيعي. يُقترح إبلاغ الطبيب وتنظيم حملة توعية بالتغذية والنشاط البدني.`,`The obesity rate is above the normal limit. Informing the doctor and running a nutrition and physical activity awareness campaign is suggested.`],
+ [`المرجع: منحنيات النمو للأطفال والمراهقين السعوديين (مدينة الملك عبدالعزيز للعلوم والتقنية، ٢٠٠٥، المعتمدة من مجلس الخدمات الصحية). المئينات هنا مقروءة تقريباً من صور المنحنيات للنموذج التجريبي، وحدود المدارس أمثلة. النسخة الفعلية تعتمد جداول القيم الرسمية.`,`Reference: Growth Charts for Saudi Children and Adolescents (King Abdulaziz City for Science and Technology, 2005, endorsed by the Health Services Council). The percentiles here are read approximately from the chart images for the demo, and school limits are examples. A real version would use the official value tables.`],
+ [`منحنى النمو مقارنة بالمئينات`,`Growth chart compared with percentiles`],
+ [`بعض القياسات تحتاج متابعة. ننصح بمراجعة المرشد الصحي أو الطبيب.`,`Some measurements need follow-up. We advise consulting the health counsellor or the doctor.`],
+ [`مؤشر كتلة الجسم أعلى من الطبيعي (زيادة وزن)`,`BMI is above normal (overweight)`],
+ [`زيادة الطول خلال السنة الأخيرة أقل من المتوقع`,`Height gain over the last year is less than expected`],
+ [`حُفظ القياس وحُدّث المنحنى`,`Measurement saved and the chart updated`],
+ [`النمو والوزن`,`Growth and weight`],
+ [`ننصح بزيارة الطبيب أو المركز الصحي لتقييم النمو. هذه ليست تشخيصاً، وقد تكون الأسباب عادية.`,`We advise visiting the doctor or health centre to assess growth. This is not a diagnosis, and the causes may be ordinary.`],
+ [`مؤشر كتلة الجسم في نطاق السمنة (المئين ٩٥ فأعلى)`,`BMI is in the obesity range (95th percentile and above)`],
+ [`الطول أقل من المئين ٣ لعمره`,`Height is below the 3rd percentile for age`],
+ [`الطول أعلى من المئين ٩٧ لعمره`,`Height is above the 97th percentile for age`],
+ [`الوزن أقل من المئين ٣ لعمره (نحافة)`,`Weight is below the 3rd percentile for age (underweight)`],
+ [`الوزن أعلى من المئين ٩٧ لعمره`,`Weight is above the 97th percentile for age`],
+ [`قصر الطول`,`Short stature`],
+ [`طول مرتفع`,`Tall stature`],
+ [`نحافة`,`Underweight`],
+ [`وزن مرتفع`,`High weight`],
+ [`سمنة`,`Obesity`],
+ [`زيادة وزن`,`Overweight`],
+ [`بطء الطول`,`Slow height gain`],
+ [`أدخل طولاً بين ٩٠ و١٩٠ سم ووزناً بين ١٠ و١٥٠ كجم`,`Enter a height between 90 and 190 cm and a weight between 10 and 150 kg`],
+ [`الطول أقل من القياس السابق، تأكد من القياس`,`Height is lower than the previous measurement; check the measurement`],
+ [`المدارس حسب نسبة السمنة`,`Schools by obesity rate`],
+ [`المئين ٩٥ فأعلى، نسب مجمّعة بلا أسماء طلاب`,`95th percentile and above, aggregated rates with no student names`],
+ [`الخط الداكن هو أعلى نسبة سمنة طبيعية.`,`The dark line is the highest normal obesity rate.`],
+ [`يُقترح تخصيص حملة توعية بالتغذية والنشاط البدني في المدارس المرتفعة، وزيارة متابعة من الفريق الصحي.`,`A nutrition and physical activity awareness campaign is suggested for the high-rate schools, plus a follow-up visit from the health team.`],
+ [`مدرستك`,`Your school`],
+ [`حصين، الصحة المدرسية`,`Haseen, school health`],
+ [`لا توجد موافقة من ولي الأمر على قياس النمو.`,`The parent has not consented to growth measurement.`],
+ [`لا توجد موافقة من ولي الأمر. لا يمكن تسجيل قياس.`,`No parental consent. A measurement cannot be recorded.`]
+].forEach(r=>{D[r[0]]=[r[1],r[2]]});
+const NUM='([٠-٩]+(?:٫[٠-٩]+)?)',CLS='([٣-٦]\\/[أب])',TM='([٠-٩]{2}:[٠-٩]{2})';
+const rx=s=>new RegExp('^'+s.replace(/#/g,NUM).replace(/@/g,TM).replace(/~/g,CLS)+'$');
+const R=[
+ [rx('# (طالب)'),`$1 students`],
+ [rx('# (مريض)'),`$1 patients`],
+ [rx('وصلت ردود (.+) إلى الفريق الصحي\\. أُضيفت حالات إلى قائمة التحويل: #'),`$1's replies reached the health team. Cases added to the referral list: $2`],
+ [rx('أُرسلت رسالة فورية إلى ولي الأمر الساعة @'),`An instant message was sent to the parent at $1`],
+ [rx('تعرّضت (.+) لنوبة ربو في المدرسة الساعة @\\. تابع المرشد الصحي الحالة وفق خطة الطبيب، يرجى التواصل مع المدرسة\\.'),`$1 had an asthma attack at school at $2. The health counsellor followed the case according to the doctor's plan; please contact the school.`],
+ [rx('الصف ~'),`Class $1`],
+ [rx('رقم #'),`No. $1`],
+ [rx('رحلة الصف ~'),`Class $1 trip`],
+ [rx('أُرسل التذكير إلى أولياء أمور الصف ~'),`Reminder sent to the parents of class $1`],
+ [rx('تذكير #'),`Remind $1`],
+ [rx('# من # خطوات لـ (.+)'),`$1 of $2 steps for $3`],
+ [rx('# جم كربوهيدرات'),`$1 g carbs`],
+ [rx('# جم'),`$1 g`],
+ [rx('من # جم'),`of $1 g`],
+ [rx('# تحتاج متابعة'),`$1 need follow-up`],
+ [rx('# حالات (.+)'),`$1 cases of $l2`],
+ [rx('جاهزية الرحلة: # من #'),`Trip readiness: $1 of $2`],
+ [rx('مغلقة # من #'),`Closed $1 of $2`],
+ [rx('# من # ولي أمر أرسلوا ردودهم'),`$1 of $2 parents have replied`],
+ [rx('# من #'),`$1 of $2`],
+ [rx('# سنة'),`$1 years`],
+ [rx('# سم'),`$1 cm`],
+ [rx('# كجم'),`$1 kg`],
+ [rx('بين المئين # و#'),`Between percentiles $1 and $2`],
+ [rx('أقل من المئين #'),`Below percentile $1`],
+ [rx('أعلى من المئين #'),`Above percentile $1`],
+ [rx('منحنيات النمو · (.+)'),`Growth charts · $1`],
+ [rx('متابعة نمو \\((.+)\\)'),`Growth follow-up ($1)`],
+ [rx('# أعلى من الحد'),`$1 above limit`],
+ [rx('تنتهي بعد # يوماً'),`Expires in $1 days`],
+ [rx('# يوماً'),`$1 days`],
+ [rx('في الصف ~ خلال ٤٨ ساعة\\.'),`in class $1 within 48 hours.`],
+ [rx('المعتاد لهذا الصف نحو بلاغ واحد كل ٤٨ ساعة \\(مثال\\)، والعدد الحالي # أضعاف ذلك\\.'),`Typical for this class is about one report every 48 hours (example); the current count is $1 times that.`],
+ [rx('الرصيد # ر\\.س'),`Balance $1 SAR`],
+ [rx('# ر\\.س'),`$1 SAR`],
+ [rx('تم تسجيل بلاغ: (.+) · الصف ~'),`Report logged: $1 · Class $2`],
+ [rx('متوسط المنطقة #٪ · # مدارس'),`Region average $1% · $2 schools`],
+ [rx('أعلى نسبة في «(.+)» عند (.+) \\(#٪\\)\\. يُقترح تخصيص زيارة متابعة لهذه المدرسة\\.'),`Highest rate in “$1” at $2 ($3%). A follow-up visit to this school is suggested.`],
+ [rx('أقل نسبة في «(.+)» عند (.+) \\(#٪\\)\\. يُقترح تخصيص زيارة متابعة لهذه المدرسة\\.'),`Lowest rate in “$1” at $2 ($3%). A follow-up visit to this school is suggested.`],
+ [rx('بالسنتيمتر، من ٢٠٢٣ إلى (٢٠٢[٥٦])'),`In centimetres, 2023 to $1`],
+ [rx('أوافق على قياس طول (.+) ووزنه في المدرسة هذا العام'),`I consent to measuring $1's height and weight at school this year`],
+ [rx('تم قياس (.+) هذا العام\\.'),`$1 has been measured this year.`],
+ [rx('نمو (.+) ضمن المتوقع\\.'),`$1's growth is within the expected range.`],
+ [rx('منحنى الطول · (.+)'),`Height curve · $1`],
+ [rx('بطاقة المقصف · (.+)'),`Canteen card · $1`],
+ [rx('خطة الربو · (.+)'),`Asthma plan · $1`],
+ [rx('خطة السكري · (.+)'),`Diabetes plan · $1`],
+ [rx('كل مرة يُفتح فيها ملف (.+) تظهر هنا\\.'),`Every time $1's file is opened, it appears here.`],
+ [rx('الأنسب لـ (.+) الآن:'),`Best fit for $1 now:`],
+ [rx('وصلت ردود (.+) إلى الفريق الصحي'),`$1's replies reached the health team`],
+ [rx('القراءة الأخيرة # (.+) خارج النطاق'),`Latest reading $1 $2 is out of range`],
+ [rx('النطاق #–# (.+)'),`Range $1–$2 $3`],
+ [rx('الحد الأدنى \\((.+)\\)'),`Lower limit ($1)`],
+ [rx('الحد الأعلى \\((.+)\\)'),`Upper limit ($1)`],
+ [rx('مثال: #'),`e.g. $1`],
+ [rx('تأكد أن الحد الأدنى أقل من الأعلى وضمن #–#'),`Make sure the lower limit is below the upper limit and within $1–$2`],
+ [rx('# سم · # كجم'),`$1 cm · $2 kg`],
+ [rx('زيادة الطول # سم فقط خلال سنة، وهي أقل من المتوقع \\(حد تجريبي ٤ سم\\)'),`Height increased by only $1 cm in a year, less than expected (trial threshold 4 cm)`],
+ [rx('ارتفع مؤشر كتلة الجسم # خلال سنة \\(حد تجريبي ٢\\)'),`BMI rose by $1 in a year (trial threshold 2)`],
+ [rx('(الآن|أمس|الأحد|اليوم) @'),`$1 $2`],
+ [rx('(الأحد|الثلاثاء|الخميس) # نوفمبر #'),`$1 $2 November $3`],
+ [rx('(الأحد|الثلاثاء|الخميس) # نوفمبر'),`$1 $2 November`],
+ [rx('أُرسل إلى المركز الصحي الساعة @'),`Sent to the health centre at $1`],
+ [rx('سُجّل اطلاعك الساعة @ وأُشعر ولي الأمر\\.'),`Your access was logged at $1 and the parent was notified.`],
+ [rx('أُرسل تذكير لولي الأمر لتجديد: (.+)\\.'),`A reminder was sent to the parent to renew: $1.`],
+ [rx('مُنع بيع «(.+)» لـ (.+) \\(يحتوي على (.+)\\)\\. أُرسل تنبيه لولي الأمر وللمرشد الصحي\\.'),`Sale of “$1” blocked for $2 (contains $l3). The parent and the health counsellor were notified.`],
+ [rx('محاولة شراء تتجاوز حد الكربوهيدرات لـ (.+)\\. أُرسل تنبيه لولي الأمر\\.'),`Purchase attempt over the carbohydrate limit for $1. The parent was notified.`],
+ [rx('ممنوع: المنتج يحتوي على (.+)'),`Blocked: the product contains $l1`],
+ [rx('أُغلقت الحالة وأُرسل تقرير الحادثة \\(# إجراءات\\)'),`Case closed and incident report sent ($1 actions)`],
+ [rx('متابعة نمو \\((.+)\\)'),`Growth follow-up ($1)`],
+ [rx('آخر تعديل للخطة: (.+)'),`Plan last edited by: $1`],
+ [rx('يحملها: (.+)'),`Carried by: $1`],
+ [rx('الاسم: (.+)'),`Name: $1`],
+ [rx('الحالات: (.+)'),`Conditions: $1`],
+ [rx('الأدوية والأدوات: (.+)'),`Medicines and tools: $1`],
+ [rx('الإجراءات: (.+)'),`Actions: $1`],
+ [rx('ولي الأمر: (.+)'),`Parent: $1`],
+ [rx('(.+) \\(مثال\\)'),`$1 (example)`],
+ [rx('حذف (.+)'),`Remove $1`],
+ [rx('✓ (.+)'),`✓ $1`],
+ [rx('(.+) 🔒'),`$1 🔒`],
+ [rx('@ (.+)'),`$1 $2`]
+];
+const DIG='٠١٢٣٤٥٦٧٨٩';
+function conv(s){
+  return s.replace(/[٠-٩]/g,c=>DIG.indexOf(c)).replace(/٫/g,'.').replace(/٪/g,'%').replace(/(\d)\/([أب])/g,(m,a,b)=>{const c=a+'/'+(b==='أ'?'A':'B');return c});
+}
+function trCore(s){
+  if(!s)return s;
+  const k=0;
+  if(D[s])return D[s][k];
+  if(s.indexOf('\n')>-1)return s.split('\n').map(trCore).join('\n');
+  for(const r of R){const m=r[0].exec(s);if(m)return r[k+1].replace(/\$(l?)(\d)/g,(a,l,i)=>{const v=trCore(m[+i]);return l&&!k?v.replace(/(^|, )([A-Z])/g,(x,y,z)=>y+z.toLowerCase()):v});}
+  let p=s.split(/(\s*[·←]\s*)/);
+  if(p.length>1)return p.map((x,i)=>i%2?(x.indexOf('←')>-1&&!k?' → ':x):trCore(x)).join('');
+  p=s.split(/(،\s*|\sو\s)/);
+  if(p.length>1)return p.map((x,i)=>i%2?(x.trim()==='و'?(k?' اور ':' and '):(k?'، ':', ')):trCore(x)).join('');
+  return s;
+}
+function tr(s){return LANG==='ar'?s:conv(trCore(s))}
+function applyLang(){
+  const de=document.documentElement;de.setAttribute('lang',LANG);de.setAttribute('dir',LANGS[LANG]);
+  const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),L=[];
+  while(w.nextNode())L.push(w.currentNode);
+  L.forEach(nd=>{
+    const p=nd.parentElement;
+    if(!p||/^(SCRIPT|STYLE)$/.test(p.tagName)||p.closest('[data-keep]'))return;
+    if(nd.__ar===undefined)nd.__ar=nd.nodeValue;
+    const m=/^(\s*)([\s\S]*?)(\s*)$/.exec(nd.__ar);
+    if(!m[2])return;
+    nd.nodeValue=LANG==='ar'?nd.__ar:m[1]+tr(m[2])+m[3];
+  });
+  document.body.querySelectorAll('[aria-label],[placeholder]').forEach(e=>{
+    if(e.closest('[data-keep]')||e.hasAttribute('data-keep'))return;
+    ['aria-label','placeholder'].forEach(a=>{
+      if(!e.hasAttribute(a))return;
+      const key='data-ar-'+a;
+      if(!e.hasAttribute(key))e.setAttribute(key,e.getAttribute(a));
+      e.setAttribute(a,tr(e.getAttribute(key)));
+    });
+  });
+  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===LANG)));
+}
+const _render0=render;
+render=function(){_render0();applyLang()};
+render();
+</script>
+
+</body></html>
